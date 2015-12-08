@@ -168,7 +168,6 @@ a {
 .grzx-right {
 	display: inline-block;
 	width: 920px;
-	height: 900px;
 	margin-left: 20px;
 }
 
@@ -309,6 +308,29 @@ a {
 .grzx-right-main-list:hover {
 	background: #F3F6FC;
 }
+.grzx-right-main-list input[type="text"]{
+	height: 30px;
+	line-height: 30px;
+	border-radius: 2px;
+	border: 1px solid #EAEAEA;
+	padding: 0 5px;
+}
+.queren,.quxiao{
+	width: 20px;
+	height: 20px;
+	background-size:20px 20px;
+	background-repeat: no-repeat;
+	border: none;
+	display: inline-block;
+	vertical-align: middle;
+}
+.queren{
+	background-image: url(../img/queren-but.png);
+	margin:0px 8px;
+}
+.quxiao{
+	background-image: url(../img/quexiao-but.png);
+}
 
 .grzx-right-main-list label {
 	display: block;
@@ -351,8 +373,8 @@ label {
 	z-index: 9999;
 	background: #fff;
 	border: 1px solid #eaeaea;
-	width: 200px;
-	height: 155px;
+	width: 150px;
+	height: 130px;
 	box-shadow: 0px 0px 10px 3px #989898;
 }
 
@@ -360,8 +382,6 @@ label {
 	background: #FFFFFF;
 }
 
-.textbox-1 {
-}
 
 #myMenu td {
 	cursor: pointer;
@@ -372,11 +392,44 @@ label {
 #myMenu tr{
 	width: 100%;
 	display: block;
-	padding: 5px 15px;;
+	padding: 0px 15px 0px 35px;
 	color: #536083;
+	height: 30px;
+	line-height: 30px;
 }
+.xiazai,.shanchu,.name,.share{
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+.xiazai{
+	background-image: url(../img/xiazai-hui.png);
+}
+.xiazai:hover{
+	background-image:url(../img/xiazai.png) ;
+}
+.shanchu{
+	background-image: url(../img/sahcnhu-hui.png);
+}
+.shanchu:hover{
+	background-image: url(../img/sahcnhu.png);
+}
+.name{
+	background-image: url(../img/chongmingming-hui.png);
+}
+.name:hover{
+	background-image: url(../img/chongmingming.png);
+}
+.share{
+	background-image: url(../img/fenxiang-hui.png);
+}
+.share:hover{
+	background-image: url(../img/fenxiang.png);
+}
+
+
 #myMenu tr:hover{
-	background: #3281DE;
+	background-color: #3281DE;
 	color: #fff;
 }
 

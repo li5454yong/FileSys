@@ -127,7 +127,7 @@
 						<button><img src="${ctx }/img/shangchuan.png" />上传</button>
 					</div>
 					<div class="grzx-but-xj">
-						<button>新建文件夹</button>
+						<button onclick="createWJJ();">新建文件夹</button>
 					</div>
 				</div>
 
@@ -266,9 +266,7 @@ function selectAll() {
 		}
 	}
 }
-</script>
 
-<script type="text/javascript">
 var windowwidth;
 var windowheight;
 var checkmenu;
@@ -314,6 +312,39 @@ $(window).ready(function() {
 		}
 	});
 });
+
+//新建文件夹按钮响应函数
+function createWJJ(){
+	var str = '<div id="adds" class="textbox-1" style="position: relative;"><label>'
+	+'<input type="checkbox" name="selected" />'
+	+'<span class="checkboxbg"></span>'
+	+'<div class="grzx-right-main-list">'
+	+'<span class="grzx-right-wjm">'
+	+'<img src="${ctx}/img/wenjianjia.png" /><span id="newName2" style="display:none;"></span>'
+	+'<input id="newName1" type="text" value="新建文件夹" />'
+	+'<button class="queren" onclick="queren();"></button>'
+	+'<button class="quxiao" onclick="quxiao();"></button>'
+	+'</span>'
+	+'<span class="grzx-right-dx">大小</span>'
+	+'<span class="grzx-right-time">修改日期</span>'
+	+'</div>'
+	+'</label>'
+	+'</div>';
+	$("#textbox").append(str);
+}
+
+function queren(){
+	var newName = $("#newName1").val();
+	$("#newName2").html(newName);
+	$("#newName1").hide();
+	$("#newName2").show();
+	$(".queren").hide();
+	$(".quxiao").hide();
+}
+
+function quxiao(){
+	$("#adds").remove();
+}
 </script>
 
 	</body>
