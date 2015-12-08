@@ -1,0 +1,386 @@
+	body {
+	font-family: "微软雅黑";
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none !important;
+}
+
+.grzx-head {
+	height: 60px;
+	background: #3281DE;
+}
+
+.grzx-head-main {
+	width: 1200px;
+	margin: auto;
+	position: relative;
+	height: 60px;
+}
+
+.logo {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.logo img {
+	height: 60px;
+}
+
+.grzx-head-menu {
+	position: absolute;
+	left: 200px;
+}
+
+.grzx-head-menu1 {
+	display: inline-block;
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+	padding: 0 15px;
+	margin: 0;
+	font-weight: 900;
+	letter-spacing: 3px;
+	font-size: 18px;
+}
+
+.active {
+	background: #336FB6;
+}
+
+.grzx-main {
+	position: relative;
+	width: 1200px;
+	margin: auto;
+}
+
+
+/*左侧*/
+
+.grzx-left {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.grzx-left-main {
+	width: 250px;
+}
+
+.grzx-left-main-1 {
+	width: 250px;
+	height: auto;
+	margin: 10px 0px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.grzx-left-main-1-head {
+	background: #96C0F2;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 7px;
+	border: 1px solid #96C0F2;
+	border-bottom: none;
+	color: #fff;
+	font-weight: 900;
+}
+
+.grzx-left-main-1-main {
+	border: 1px solid #EAEAEA;
+	border-top: none;
+}
+
+.grzx-left-main-1-main div {
+	padding: 5px 0px 5px 10px;
+	position: relative;
+}
+
+.grzx-left-main-1-main div span {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+
+/*标签云css开始*/
+
+#tagbox {
+	position: relative;
+	margin: 0px auto 0px;
+	width: 238px;
+	height: 250px;
+	/*background: #3a4954;*/
+}
+
+#tagbox a {
+	position: absolute;
+	padding: 3px 6px;
+	font-family: Microsoft YaHei;
+	color: #444;
+	TOP: 0px;
+	font-weight: bold;
+	text-decoration: none;
+	left: 0px
+}
+
+#tagbox a:hover {
+	border: #eee 1px solid;
+	background: #336FB6;
+}
+
+#tagbox .blue {
+	color: blue
+}
+
+#tagbox .red {
+	color: red
+}
+
+#tagbox .yellow {
+	color: yellow
+}
+
+
+/*标签云css结束*/
+
+
+/*存储空间进度条*/
+
+.jindutiao {
+	width: 250px;
+	margin: auto;
+	padding: 20px 10px 10px 10px;
+	line-height: 30px;
+	border: 1px solid #EAEAEA;
+}
+
+.progress {
+	margin: 0;
+}
+
+
+/*页面右侧*/
+
+.grzx-right {
+	display: inline-block;
+	width: 920px;
+	height: 900px;
+	margin-left: 20px;
+}
+
+
+/*上传按钮*/
+
+.grzx-but-sc-xj {}
+
+.grzx-but-sc,
+.grzx-but-xj {
+	display: inline-block;
+	margin: 10px;
+}
+
+.grzx-but-sc button {
+	background: #3281DE;
+	color: #fff;
+	border-radius: 5px;
+	border: none;
+	padding: 5px 10px;
+}
+
+.grzx-but-sc button img {
+	width: 15px;
+	display: inline-block;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.grzx-but-sc button:hover {
+	background: #336FB6;
+}
+
+.grzx-but-xj button {
+	background-color: #FFFFFF;
+	color: #444444;
+	border-radius: 5px;
+	border: 1px solid #EAEAEA;
+	padding: 5px 10px;
+	background-image: url(../img/xinjianwenjianjia-hui.png);
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: 10px 6px;
+	padding-left: 33px;
+}
+
+.grzx-but-xj button:hover {
+	background-color: #336FB6;
+	background-image: url(../img/xinjianwenjianjia.png);
+	color: #fff;
+}
+
+
+/*页面右侧  文件列表主要内容*/
+
+.grzx-right-main {
+	border: 1px solid #EAEAEA;
+	border-top: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.grzx-right-main-title {
+	background: #96C0F2 !important;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 0 7px;
+	border: 1px solid #96C0F2;
+	border-bottom: none;
+	color: #fff;
+	font-weight: 900;
+	height: 50px;
+	line-height: 50px;
+	display: inline-block;
+	width: 918px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding-left: 50px;
+}
+
+.grzx-right-wjm {
+	display: inline-block;
+	position: relative;
+	width: 55%;
+}
+
+.grzx-right-wjm label input[type="checkbox"] {
+	opacity: 0;
+	margin-right: 10px;
+}
+
+.checkboxbg {
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(../img/checkbox.png);
+	background-size: 15px 15px;
+	z-index: 5;
+}
+
+.grzx-right-wjm img {
+	width: 35px;
+	height: 35px;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.grzx-right-dx {
+	display: inline-block;
+	position: relative;
+	width: 15%;
+}
+
+.grzx-right-time {
+	display: inline-block;
+	position: relative;
+	width: 15%;
+}
+
+.grzx-right-main-list {
+	height: 50px;
+	line-height: 45px;
+	padding: 0px 7px;
+	border-top: 1px solid #EAEAEA;
+	background: #fff;
+	display: inline-block;
+	width: 918px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding-left: 50px;
+}
+
+.grzx-right-main-list:hover {
+	background: #F3F6FC;
+}
+
+.grzx-right-main-list label {
+	display: block;
+}
+
+label input[type="checkbox"] {
+	display: inline-block;
+	margin-right: 10px;
+	opacity: 0;
+}
+
+input[type="checkbox"]:checked+span {
+	background: url(../img/checked.png) no-repeat;
+	background-size: 15px 15px;
+}
+
+input[type="checkbox"]:checked+span+div {
+	background: #F3F6FC;
+}
+
+label {
+	display: block;
+	height: 45px;
+}
+
+
+/*右键菜单功能*/
+
+#mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9000;
+	display: block;
+}
+
+#myMenu {
+	position: absolute;
+	display: none;
+	z-index: 9999;
+	background: #fff;
+	border: 1px solid #eaeaea;
+	width: 200px;
+	height: 155px;
+	box-shadow: 0px 0px 10px 3px #989898;
+}
+
+#textbox {
+	background: #FFFFFF;
+}
+
+.textbox-1 {
+}
+
+#myMenu td {
+	cursor: pointer;
+}
+#myMenu table{
+	width: 100%;
+}
+#myMenu tr{
+	width: 100%;
+	display: block;
+	padding: 5px 15px;;
+	color: #536083;
+}
+#myMenu tr:hover{
+	background: #3281DE;
+	color: #fff;
+}
+
+
+
+
+
