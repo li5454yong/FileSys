@@ -61,7 +61,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	
-	public List<T> findEntityEntity(String hql, Object... objects) {
+	public List<T> findEntity(String hql, Object... objects) {
 		Query query = sf.getCurrentSession().createQuery(hql);
 		for(int i=0; i<objects.length; i++){
 			query.setParameter(i, objects[i]);

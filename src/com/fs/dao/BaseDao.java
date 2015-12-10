@@ -26,7 +26,7 @@ public interface BaseDao<T> {
 	
 	public T getEntity(Integer id);
 	
-	public List<T> findEntityEntity(String hql,Object...objects);
+	public List<T> findEntity(String hql,Object...objects);
 	
 	public List<T> queryForPage(String hql,int offset,int length,Object... objects);
 	
