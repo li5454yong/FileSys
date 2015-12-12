@@ -1,4 +1,4 @@
-	body {
+body {
 	font-family: "微软雅黑";
 	padding: 0;
 	margin: 0;
@@ -308,27 +308,32 @@ a {
 .grzx-right-main-list:hover {
 	background: #F3F6FC;
 }
-.grzx-right-main-list input[type="text"]{
+
+.grzx-right-main-list input[type="text"] {
 	height: 30px;
 	line-height: 30px;
 	border-radius: 2px;
 	border: 1px solid #EAEAEA;
 	padding: 0 5px;
 }
-.queren,.quxiao{
+
+.queren,
+.quxiao {
 	width: 20px;
 	height: 20px;
-	background-size:20px 20px;
+	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	border: none;
 	display: inline-block;
 	vertical-align: middle;
 }
-.queren{
+
+.queren {
 	background-image: url(../img/queren-but.png);
-	margin:0px 8px;
+	margin: 0px 8px;
 }
-.quxiao{
+
+.quxiao {
 	background-image: url(../img/quexiao-but.png);
 }
 
@@ -382,14 +387,15 @@ label {
 	background: #FFFFFF;
 }
 
-
 #myMenu td {
 	cursor: pointer;
 }
-#myMenu table{
+
+#myMenu table {
 	width: 100%;
 }
-#myMenu tr{
+
+#myMenu tr {
 	width: 100%;
 	display: block;
 	padding: 0px 15px 0px 35px;
@@ -397,43 +403,387 @@ label {
 	height: 30px;
 	line-height: 30px;
 }
-.xiazai,.shanchu,.name,.share{
+
+.xiazai,
+.shanchu,
+.name,
+.share {
 	background-size: 15px 15px;
 	background-repeat: no-repeat;
 	background-position: 10px center;
 }
-.xiazai{
+
+.xiazai {
 	background-image: url(../img/xiazai-hui.png);
 }
-.xiazai:hover{
-	background-image:url(../img/xiazai.png) ;
+
+.xiazai:hover {
+	background-image: url(../img/xiazai.png);
 }
-.shanchu{
+
+.shanchu {
 	background-image: url(../img/sahcnhu-hui.png);
 }
-.shanchu:hover{
+
+.shanchu:hover {
 	background-image: url(../img/sahcnhu.png);
 }
-.name{
+
+.name {
 	background-image: url(../img/chongmingming-hui.png);
 }
-.name:hover{
+
+.name:hover {
 	background-image: url(../img/chongmingming.png);
 }
-.share{
+
+.share {
 	background-image: url(../img/fenxiang-hui.png);
 }
-.share:hover{
+
+.share:hover {
 	background-image: url(../img/fenxiang.png);
 }
 
-
-#myMenu tr:hover{
+#myMenu tr:hover {
 	background-color: #3281DE;
 	color: #fff;
 }
 
 
+/*注册页面css开始*/
+
+.reg-title {
+	height: 60px;
+	background-color: #3281DE;
+}
+
+.reg-title-main {
+	height: 60px;
+	width: 1000px;
+	margin: auto;
+}
+
+.reg-title-main img {
+	height: 60px;
+}
+
+.reg-main {
+	background: #FFFFFF;
+	width: 700px;
+	height: 700px;
+	margin: auto;
+	margin-top: 30px;
+	box-shadow: 0px 0px 15px 5px #EAEAEA;
+}
+
+.reg-main-title {
+	text-align: center;
+	margin: 0 50px;
+	line-height: 100px;
+	font-size: 28px;
+	font-weight: 900;
+	color: #3281DE;
+	border-bottom: 1px solid #EAEAEA;
+}
+
+.reg-main-con {
+	width: 500px;
+	margin: 50px auto;
+	font-size: 18px;
+	color: #555;
+}
+
+.reg-main-con-1 {
+	margin: 15px 0px;
+}
+
+.reg-main-left {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100px;
+	text-align: right;
+}
+
+.reg-main-right input {
+	width: 200px;
+	height: 30px;
+	margin-left: 20px;
+	border-radius: 5px;
+	border: 1px solid #EAEAEA;
+	padding-left: 5px;
+}
+
+.reg-main-con-1-tishi {
+	font-size: 14px;
+	margin-left: 130px;
+	color: #959393;
+	margin-top: 10px;
+}
+
+.reg-but {
+	background: #3281DE;
+	border-radius: 5px;
+	width: 200px;
+	height: 40px;
+	border: none;
+	margin-left: 130px;
+	color: #FFFFFF;
+	font-size: 18px;
+	margin-top: 30px;
+}
 
 
+/*表单验证css代码开始*/
 
+.contact *:focus {
+	outline: none;
+}
+
+.contact {
+	width: 550px;
+	height: auto;
+	/*background: #f6f6f6;*/
+	margin: auto;
+	/*padding: 10px;*/
+}
+
+.contact ul {
+	width: 500px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.contact ul li {
+	/*border-bottom: 1px solid #dfdfdf;*/
+	list-style: none;
+	padding: 12px;
+}
+
+.contact ul li label {
+	width: 100px;
+	display: inline-block;
+	float: left;
+}
+
+.contact ul li input[type=text],
+.contact ul li input[type=password] {
+	width: 200px;
+	height: 25px;
+	border: 1px solid #aaa;
+	padding: 3px 8px;
+	border-radius: 5px;
+}
+
+.contact ul li input:focus {
+	border-color: #3281DE;
+}
+
+.contact ul li input[type=text] {
+	transition: padding .25s;
+	-o-transition: padding .25s;
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+}
+
+.contact ul li input[type=password] {
+	transition: padding .25s;
+	-o-transition: padding .25s;
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+}
+
+.contact ul li input:focus {
+	/*padding-right: 70px;*/
+}
+
+.btn {
+	position: relative;
+	left: 40px;
+	top: 20px;
+}
+
+.btn input[type="submit"] {
+	width: 150px;
+	height: 40px;
+	border: none;
+	background: #3281DE;
+	color: #FFFFFF;
+	border: 1px solid #3281DE;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: 900;
+	letter-spacing: 3px;
+}
+
+.btn input[type="reset"] {
+	width: 150px;
+	height: 40px;
+	border: none;
+	background: #FFFFFF;
+	color: #3281DE;
+	border: 1px solid #3281DE;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: 900;
+	letter-spacing: 3px;
+	margin-left: 10px;
+}
+
+.tips {
+	color: rgba(0, 0, 0, 0.5);
+	padding-left: 10px;
+	font-size: 14px;
+	display: block;
+	margin-top: 10px;
+}
+
+.tips_true,
+.tips_false {
+	padding-left: 10px;
+}
+
+.tips_true {
+	color: #5BC92D;
+}
+
+.tips_false {
+	color: #FE6603;
+}
+
+
+/*表单验证css代码结束*/
+
+
+/*注册页面css结束*/
+
+
+/*首页css开始*/
+
+.index-head {
+	width: 1200px;
+	margin: 30px auto 0px auto;
+	height: 60px;
+	position: relative;
+}
+
+.index-logo {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.index-logo img {
+	height: 60px;
+}
+
+.index-search {
+	position: relative;
+	left: 300px;
+	width: 550px;
+	height: 60px;
+	display: inline-block;
+}
+
+.index-search input[type="text"] {
+	width: 500px;
+	height: 36px;
+	border: 1px solid #DADADA;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	margin-top: 10px;
+	padding-left: 10px;
+}
+
+.index-search input[type="text"]:focus {
+	outline: none;
+	border-color: #92B4EB;
+}
+
+.index-search button {
+	position: absolute;
+	background-image: url(../img/search.png);
+	width: 40px;
+	height: 40px;
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: center;
+	top: 10px;
+	right: 10px;
+	border: none;
+	background-color: #3281DE;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.index-search button:focus {
+	outline: none;
+}
+
+.login-reg-g {
+	height: 60px;
+	width: 200px;
+	display: inline-block;
+	position: relative;
+	left: 400px;
+	vertical-align: top;
+}
+
+.index-login,
+.index-reg {
+	display: inline-block;
+	width: 70px;
+	height: 40px;
+	border-radius: 5px;
+	background: #3281DE;
+	margin-top: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 40px;
+	margin-left: 20px;
+}
+
+.index-nav {
+	height: 60px;
+	background: #3281DE;
+	margin-top: 20px;
+}
+
+.index-nav-main {
+	width: 1200px;
+	margin: auto;
+	line-height: 60px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 900;
+	letter-spacing: 3px;
+}
+
+.index-content {
+	border: 1px solid #000;
+	margin: 20px auto 0 auto;
+	width: 1200px;
+}
+
+
+/*轮播图css开始*/
+.index-lunbotu{
+	width: 840px;
+	height: 450px;
+}
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #000;
+}
+
+.swiper-slide {
+	background-position: center;
+	background-size: cover;
+}
+
+
+/*轮播图css结束*/
+
+
+/*首页css结束*/

@@ -55,7 +55,7 @@
     </appender>
     
     <!-- 很多人使用Mybatis的时候，控制台不能输出SQL语句，造成调试困难。只需要让DAO层的日志级别调整为DEBUG就可以了 -->
-    <logger name="com.fs.dao.*" level="DEBUG" />
+    <logger name="com.fs.controller" level="INFO" />
 	
 	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->  
    <!--  <logger name="org.hibernate.type.descriptor.sql.BasicBinder"  level="TRACE" />  

@@ -11,4 +11,6 @@ import com.fs.entity.User;
  */
 public interface UserService extends BaseService<User> {
 	public List<User> login(Object... objects);
+	
+	public void userReg(Object... obj);
 }

@@ -38,7 +38,7 @@
 					
 					<div class="error"><span>+</span></div>
 				</form>
-				<a href="reg.html"><button>免费注册</button></a>
+				<a href="${ctx }/toReg"><button>免费注册</button></a>
 
 			</div>
 		</div>

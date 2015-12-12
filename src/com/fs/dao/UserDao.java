@@ -8,5 +8,5 @@ import com.fs.entity.User;
  * 2015年12月10日下午8:07:14
  */
 public interface UserDao extends BaseDao<User> {
-	
+	public void userReg(Object... obj);
 }

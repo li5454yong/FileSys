@@ -28,6 +28,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements
 		return dao.findEntity(hql, objects);
 	}
 
+	@Override
+	public void userReg(Object... obj) {
+		dao.userReg(obj);
+	}
+
 	
 
 }
