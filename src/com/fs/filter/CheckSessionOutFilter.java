@@ -26,6 +26,7 @@ public class CheckSessionOutFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hsrq = (HttpServletRequest) request;
 		HttpServletResponse hsrp = (HttpServletResponse) response;
+		hsrp.setContentType("text/html");
 		String reqPage = hsrq.getServletPath();
 		System.out.println("reqPage:::"+reqPage);
 //		if(!reqPage.trim().equals("/login")) {

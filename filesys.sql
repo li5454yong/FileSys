@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `t_category`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `t_category`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_category` (
+CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `u_id` int(11) DEFAULT NULL COMMENT '用户id',
   `p_id` varchar(50) DEFAULT NULL COMMENT '上级分类id',
@@ -31,16 +31,55 @@ CREATE TABLE `t_category` (
   `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
   `upd_date` datetime DEFAULT NULL COMMENT '记录更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_category`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `t_category` WRITE;
-/*!40000 ALTER TABLE `t_category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_category` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,4,'0','10','教程','2015-12-13 17:38:43','2015-12-13 17:38:46');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `files`
+--
+
+DROP TABLE IF EXISTS `files`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `filename` varchar(100) DEFAULT NULL COMMENT '文件名',
+  `filesize` double DEFAULT NULL COMMENT '文件大小',
+  `filepath` varchar(100) DEFAULT NULL COMMENT '文件路径',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `uploaddate` datetime DEFAULT NULL COMMENT '上传时间',
+  `category_id` varchar(50) DEFAULT NULL COMMENT '所属分类id',
+  `downloadnum` int(11) DEFAULT NULL COMMENT '下载量',
+  `filedesc` varchar(300) DEFAULT NULL COMMENT '文件描述',
+  `public_share_path` varchar(50) DEFAULT NULL COMMENT '公开分享路径',
+  `private_share_path` varchar(50) DEFAULT NULL COMMENT '私密分享路径',
+  `distill_pwd` varchar(50) DEFAULT NULL COMMENT '文件提取码（文件为公开分享时为null)',
+  `filetype` varchar(20) DEFAULT NULL COMMENT '文件类型',
+  `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
+  `upd_date` datetime DEFAULT NULL COMMENT '记录生成时间',
+  `icon_path` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `files`
+--
+
+LOCK TABLES `files` WRITE;
+/*!40000 ALTER TABLE `files` DISABLE KEYS */;
+INSERT INTO `files` VALUES (1,'文件1',3.2,NULL,4,'2015-12-13 17:36:57','0',0,NULL,NULL,NULL,NULL,'txt','2015-12-13 17:37:19','2015-12-13 17:37:24','img/text.png');
+/*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -70,71 +109,34 @@ LOCK TABLES `t_collect` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_files`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `t_files`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `filename` varchar(100) DEFAULT NULL COMMENT '文件名',
-  `filesize` double DEFAULT NULL COMMENT '文件大小',
-  `filepath` varchar(100) DEFAULT NULL COMMENT '文件路径',
-  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `uploaddate` datetime DEFAULT NULL COMMENT '上传时间',
-  `category_id` varchar(50) DEFAULT NULL COMMENT '所属分类id',
-  `downloadnum` int(11) DEFAULT NULL COMMENT '下载量',
-  `filedesc` varchar(300) DEFAULT NULL COMMENT '文件描述',
-  `public_share_path` varchar(50) DEFAULT NULL COMMENT '公开分享路径',
-  `private_share_path` varchar(50) DEFAULT NULL COMMENT '私密分享路径',
-  `distill_pwd` varchar(50) DEFAULT NULL COMMENT '文件提取码（文件为公开分享时为null)',
-  `filetype` varchar(20) DEFAULT NULL COMMENT '文件类型',
-  `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
-  `upd_date` datetime DEFAULT NULL COMMENT '记录生成时间',
-  `u_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_files`
---
-
-LOCK TABLES `t_files` WRITE;
-/*!40000 ALTER TABLE `t_files` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_files` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_user`
---
-
-DROP TABLE IF EXISTS `t_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_user` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
   `password` varchar(50) DEFAULT NULL COMMENT '密码',
   `memory_space` double DEFAULT NULL COMMENT '用户存储空间大小',
-  `used_space` double DEFAULT NULL COMMENT '已用存储空间大小',
+  `used_space` double unsigned zerofill DEFAULT '0000000000000000000000' COMMENT '已用存储空间大小',
   `reg_date` datetime DEFAULT NULL COMMENT '注册时间',
   `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
   `upd_date` datetime DEFAULT NULL COMMENT '记录更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `t_user`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `t_user` WRITE;
-/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (1,'aaa','aaa','111',NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'aaa','aaa','111',NULL,NULL,NULL,NULL,NULL),(4,'15628418747',NULL,'b209b3ac4f86f6fa983701bbb553d1a2',2048,0000000000000000000000,'2015-12-11 23:17:49','2015-12-11 23:17:49','2015-12-11 23:17:49');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -146,4 +148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-10 21:50:30
+-- Dump completed on 2015-12-13 21:06:36

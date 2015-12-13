@@ -1,5 +1,7 @@
 package com.fs.service;
 
+import java.util.List;
+
 import com.fs.entity.Category;
 
 /**
@@ -10,4 +12,6 @@ import com.fs.entity.Category;
 public interface CategoryService {
 
 	public boolean getCategoryByName(String name,int u_id);
+	
+	public List<Category> getCategoryList(String p_id,int u_id);
 }

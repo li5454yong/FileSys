@@ -23,7 +23,6 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public boolean getCategoryByName(String name,int u_id){
-		
 		String hql = "from Category where title=? and u_id=?";
 		List<Category> list = dao.findEntity(hql, name,u_id);
 		
@@ -32,5 +31,9 @@ public class CategoryServiceImpl implements CategoryService{
 		}else{
 			return true;
 		}
+	}
+	
+	public List<Category> getCategoryList(String p_id,int u_id){
+		return dao.getCategoryList(p_id,u_id);
 	}
 }

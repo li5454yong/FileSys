@@ -251,7 +251,9 @@ a {
 
 .grzx-right-wjm {
 	display: inline-block;
-	position: relative;
+	position: absolute;
+	top:0px;
+	left:45px;
 	width: 55%;
 }
 
@@ -281,14 +283,18 @@ a {
 
 .grzx-right-dx {
 	display: inline-block;
-	position: relative;
+	position: absolute;
+	left:55%;
+	top:0px;
 	width: 15%;
 }
 
 .grzx-right-time {
 	display: inline-block;
-	position: relative;
-	width: 15%;
+	position: absolute;
+	width: 30%;
+	left:70%;
+	top:0;
 }
 
 .grzx-right-main-list {

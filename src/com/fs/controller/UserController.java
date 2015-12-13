@@ -1,7 +1,6 @@
 package com.fs.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fs.entity.Category;
+import com.fs.entity.Files;
 import com.fs.entity.User;
+import com.fs.service.CategoryService;
+import com.fs.service.FilesService;
 import com.fs.service.UserService;
 import com.fs.util.MD5;
 
@@ -28,10 +32,14 @@ public class UserController extends BasicController{
 	@Resource
 	private UserService servise;
 	
+	@Resource
+	private FilesService filesService;
+	
+	@Resource
+	private CategoryService categoryService;
 	//登录
 	@RequestMapping("login")
 	public void Login(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		response.setContentType("text/html");
 		String username = request.getParameter("username");
 		String password = MD5.MD5Encode(request.getParameter("password"));
 		List<User> l = servise.login(username);
@@ -67,7 +75,19 @@ public class UserController extends BasicController{
 	
 	//跳转到个人中心
 	@RequestMapping("toMycenter")
-	public String toMycenter(){
+	public String toMycenter(Model map){
+		User user = getAuthUser();
+		if(user != null){
+			
+			List<Category> categoryList = categoryService.getCategoryList("0",user.getId());
+			List<Files> fileList = filesService.getFileList("0",user.getId());
+			map.addAttribute("fileList", fileList);
+			map.addAttribute("categoryList", categoryList);
+		}else{
+			return redirect("toLogin");
+		}
+		
+		
 		return "mycenter/index";
 	}
 	

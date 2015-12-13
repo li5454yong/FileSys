@@ -5,8 +5,12 @@ import java.util.List;
 
 
 
+
+
+
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -30,5 +34,20 @@ public class CategoryDaoImpl implements CategoryDao {
 			query.setParameter(i, objects[i]);
 		}
 		return query.list();
+	}
+
+	@Override
+	public List<Category> getCategoryList(String p_id,int u_id) {
+		try {
+			String sql = "from Category where p_id=? and u_id=?";
+			Query query = sf.getCurrentSession().createQuery(sql);
+			query.setString(0, p_id);
+			query.setInteger(1, u_id);
+			return query.list();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

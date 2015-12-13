@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fs.dao.BaseDao;
 import com.fs.dao.UserDao;
@@ -22,7 +23,6 @@ public class UserServiceImpl implements
 
 	@Resource
 	private UserDao dao;
-	
 	
 	public List<User> login(Object... objects) {
 		String hql = "from User where username=?";

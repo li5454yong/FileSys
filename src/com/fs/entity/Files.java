@@ -13,7 +13,7 @@ import javax.persistence.Id;
  * 2015年12月7日下午9:41:14
  */
 
-@Entity(name="t_files")
+@Entity
 public class Files {
 	
 	private int id;
@@ -24,7 +24,7 @@ public class Files {
 	
 	private String filepath;
 	
-	private int u_id;
+	private int user_id;
 	
 	private Date uploadDate; // 上传日期
 	
@@ -45,6 +45,8 @@ public class Files {
 	private Date init_date;
 	
 	private Date upd_date;
+	
+	private String icon_path;
 
 	@Id
 	public int getId() {
@@ -79,12 +81,13 @@ public class Files {
 		this.filepath = filepath;
 	}
 
-	public int getU_id() {
-		return u_id;
+	
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public void setU_id(int u_id) {
-		this.u_id = u_id;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public Date getUploadDate() {
@@ -165,6 +168,14 @@ public class Files {
 
 	public void setUpd_date(Date upd_date) {
 		this.upd_date = upd_date;
+	}
+
+	public String getIcon_path() {
+		return icon_path;
+	}
+
+	public void setIcon_path(String icon_path) {
+		this.icon_path = icon_path;
 	}
 	
 	

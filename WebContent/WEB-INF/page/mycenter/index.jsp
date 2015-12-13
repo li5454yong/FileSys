@@ -146,20 +146,41 @@
 						</div>
 					</div>
 					<div id="textbox">
-						<div class="textbox-1" style="position: relative;">
-							<label>
-								<input type="checkbox" name="selected" />
-								<span class="checkboxbg"></span>
-								<div class="grzx-right-main-list">
-									<span class="grzx-right-wjm">
-									<img src="img/wenjianjia.png" />新建文件夹
-								</span>
-									<span class="grzx-right-dx">大小</span>
-									<span class="grzx-right-time">修改日期</span>
-								</div>
-							</label>
-						</div>
-						<div class="textbox-1" style="position: relative;">
+						<c:forEach items="${categoryList }" var="item">
+							<div class="textbox-1" style="position: relative;">
+								<label>
+									<input type="checkbox" name="selected" />
+									<span class="checkboxbg"></span>
+									<div class="grzx-right-main-list">
+										<span class="grzx-right-wjm">
+											<img src="${ctx }/img/wenjianjia.png" />${item.title }
+										</span>
+										<span class="grzx-right-dx">--</span>
+										<span class="grzx-right-time">
+										<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+										</span>
+									</div>
+								</label>
+							</div>
+						 </c:forEach>
+						<c:forEach items="${fileList }" var="item">
+							<div class="textbox-1" style="position: relative;">
+								<label>
+									<input type="checkbox" name="selected" />
+									<span class="checkboxbg"></span>
+									<div class="grzx-right-main-list">
+										<span class="grzx-right-wjm">
+											<img src="${ctx }/${item.icon_path}" />${item.filename }
+										</span>
+										<span class="grzx-right-dx">${item.filesize }&nbsp;M</span>
+										<span class="grzx-right-time">
+										<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+										</span>
+									</div>
+								</label>
+							</div>
+						 </c:forEach>
+						<%-- <div class="textbox-1" style="position: relative;">
 							<label>
 								<input type="checkbox" name="selected" />
 								<span class="checkboxbg"></span>
@@ -236,7 +257,7 @@
 									<span class="grzx-right-time">修改日期</span>
 								</div>
 							</label>
-						</div>
+						</div> --%>
 					</div>
 					<div id="myMenu">
 						<table cellspace="3">

@@ -1,7 +1,11 @@
 package com.fs.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +25,15 @@ public class CategoryController extends BasicController{
 	private CategoryService service;
 	
 	@RequestMapping("addCategory")
-	public void addCategory(HttpServletRequest request){
+	public void addCategory(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		User user = getAuthUser();
-		String title = request.getParameter("title");
-		service.getCategoryByName(title, user.getId());
+		if(user != null){
+			String title = request.getParameter("title");
+			boolean flag = service.getCategoryByName(title, user.getId());
+			response.getWriter().print(flag);
+		}else{
+			response.getWriter().print("toLogin");
+		}
+		
 	}
 }
