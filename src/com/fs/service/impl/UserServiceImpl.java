@@ -23,7 +23,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements
 	private UserDao dao;
 	
 	public List<User> login(Object... objects) {
-		String hql = "select id from t_user where username=? and password=?";
+		String hql = "from User where username=?";
 		
 		return dao.findEntity(hql, objects);
 	}

@@ -31,10 +31,10 @@
 		<div class="page-container-div">
 			<div class="page-container">
 				<h1>登录</h1>
-				<form action="${ctx }/login" method="post">
+				<form action="" method="post">
 					<input type="text" name="username" class="username" placeholder="用户名">
 					<input type="password" name="password" class="password" placeholder="密码">
-					<button type="submit">登录</button>
+					<button type="button" onclick="login();">登录</button>
 					
 					<div class="error"><span>+</span></div>
 				</form>
@@ -50,5 +50,25 @@
 		<script src="${ctx }/assets/js/scripts.js"></script>
 
 	</body>
-
+<script type="text/javascript">
+function login(){
+	var username = $("input[name=username]").val();
+	var password = $("input[name=password]").val();
+	$.ajax({
+		url:'${ctx}/login',
+		type:'POST',
+		//ansyc:false,
+		data:{'username':username,'password':password},
+		success:function(data){
+			if(data == 1){
+				alert("用户不存在");
+			}else if(data == 2){
+				alert("密码错误");
+			}else if(data == 0){
+				window.location.href="${ctx}/toMycenter";
+			}
+		}
+	});
+}
+</script>
 </html>

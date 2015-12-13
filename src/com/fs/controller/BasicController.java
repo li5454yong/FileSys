@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fs.entity.User;
+
 
 public abstract class BasicController {
 
@@ -30,5 +32,7 @@ public abstract class BasicController {
 		return new WebMessage(WebMessage.SUCCESS, message);
 	}
 
-
+	public User getAuthUser() {
+		return (User) session.getAttribute("USER");
+	}
 }

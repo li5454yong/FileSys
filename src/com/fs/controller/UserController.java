@@ -1,10 +1,13 @@
 package com.fs.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +28,24 @@ public class UserController extends BasicController{
 	@Resource
 	private UserService servise;
 	
+	//登录
 	@RequestMapping("login")
-	public void Login(HttpServletRequest request){
+	public void Login(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html");
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		List<User> l = servise.login(username,password);
-		System.out.println(l.toString());
+		String password = MD5.MD5Encode(request.getParameter("password"));
+		List<User> l = servise.login(username);
+		if(l.size() == 1){
+			User u = l.get(0);
+			if(u.getPassword().equals(password)){
+				request.getSession().setAttribute("USER",u);
+				response.getWriter().print("0");//登录成功
+			}else{
+				response.getWriter().print("2");//密码错误
+			}
+		}else{
+			response.getWriter().print("1");//用户名不存在
+		}
 	}
 	
 	//跳转到注册页面
@@ -39,6 +54,7 @@ public class UserController extends BasicController{
 		return "mycenter/reg";
 	}
 	
+	//注册
 	@RequestMapping("reg")
 	public String Reg(HttpServletRequest request){
 		String username = request.getParameter("yourname");
@@ -49,9 +65,16 @@ public class UserController extends BasicController{
 		return redirect("/toLogin");
 	}
 	
+	//跳转到个人中心
+	@RequestMapping("toMycenter")
+	public String toMycenter(){
+		return "mycenter/index";
+	}
+	
+	//跳转到登录页面
 	@RequestMapping("toLogin")
 	public String toLogin(){
-		
 		return "login";
 	}
+	
 }

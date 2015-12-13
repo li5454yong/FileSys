@@ -4,13 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author lxg
  *
  * 2015年12月10日下午8:07:44
  */
-@Entity(name="t_user")
+@Entity
 public class User {
 	private int id;
 	
