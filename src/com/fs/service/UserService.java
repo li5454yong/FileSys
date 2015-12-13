@@ -9,7 +9,7 @@ import com.fs.entity.User;
  *
  * 2015年12月10日下午8:18:43
  */
-public interface UserService extends BaseService<User> {
+public interface UserService {
 	public List<User> login(Object... objects);
 	
 	public void userReg(Object... obj);

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.fs.dao.BaseDao;
 import com.fs.dao.UserDao;
 import com.fs.entity.User;
 import com.fs.service.UserService;
@@ -16,16 +17,22 @@ import com.fs.service.UserService;
  * 2015年12月10日下午8:20:14
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User> implements
+public class UserServiceImpl implements
 		UserService {
 
 	@Resource
 	private UserDao dao;
 	
+	
 	public List<User> login(Object... objects) {
 		String hql = "from User where username=?";
+		try{
+			return dao.findEntity(hql, objects);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 		
-		return dao.findEntity(hql, objects);
 	}
 
 	@Override

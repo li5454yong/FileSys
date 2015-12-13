@@ -18,16 +18,18 @@ import com.fs.entity.User;
  *
  * 2015年12月10日下午8:14:47
  */
-@Repository
-public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
+@Repository("userDao")
+public class UserDaoImpl implements UserDao {
 
 	@Resource
 	private SessionFactory sf;
 	
-	@Override
 	public List<User> findEntity(String hql, Object... objects) {
-		
-		return super.findEntity(hql, objects);
+		Query query = sf.getCurrentSession().createQuery(hql);
+		for(int i=0; i<objects.length; i++){
+			query.setParameter(i, objects[i]);
+		}
+		return query.list();
 	}
 
 	public void userReg(Object... obj){

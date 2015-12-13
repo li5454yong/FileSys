@@ -340,6 +340,9 @@ function queren(){
 	$("#newName2").show();
 	$(".queren").hide();
 	$(".quxiao").hide();
+	$.ajax({
+		
+	});
 }
 
 function quxiao(){

@@ -16,7 +16,7 @@ import com.fs.dao.BaseDao;
  * 
  */
 @SuppressWarnings("unchecked")
-public abstract class BaseDaoImpl<T> implements BaseDao<T> {
+public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Resource
 	private SessionFactory sf;

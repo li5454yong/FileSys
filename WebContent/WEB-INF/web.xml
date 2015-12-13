@@ -51,7 +51,28 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-
+	<!-- 过滤sql注入，对传入的参数过滤特殊字符等 -->
+	<filter>
+		<filter-name>XssFilter</filter-name>
+		<filter-class>com.fs.filter.XssFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XssFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 检查session是否过期filter -->
+   <filter>   
+       <filter-name>CheckSessionFilter</filter-name>   
+       <filter-class>   
+       	com.fs.filter.CheckSessionOutFilter
+       </filter-class>   
+   </filter>   
+  
+   <filter-mapping>   
+      <filter-name>CheckSessionFilter</filter-name>   
+      <url-pattern>/*</url-pattern>   
+   </filter-mapping> 
 
 
 

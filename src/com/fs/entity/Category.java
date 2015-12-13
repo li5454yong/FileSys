@@ -13,7 +13,7 @@ import javax.persistence.Id;
  * 
  * 2015年12月7日下午9:07:27
  */
-@Entity(name="t_category")
+@Entity
 public class Category {
 	
 	private int id; //主键
