@@ -180,6 +180,8 @@
 								</label>
 							</div>
 						 </c:forEach>
+						<input type="hidden" id="categoryLength" value="${categoryLength }">
+						<input type="hidden" id="pId" value="0">
 					</div>
 					<div id="myMenu">
 						<table cellspace="3">
@@ -268,8 +270,8 @@ function createWJJ(){
 	+'<button class="queren" onclick="queren();"></button>'
 	+'<button class="quxiao" onclick="quxiao();"></button>'
 	+'</span>'
-	+'<span class="grzx-right-dx">大小</span>'
-	+'<span class="grzx-right-time">修改日期</span>'
+	+'<span class="grzx-right-dx">--</span>'
+	+'<span class="grzx-right-time"></span>'
 	+'</div>'
 	+'</label>'
 	+'</div>';
@@ -278,13 +280,26 @@ function createWJJ(){
 
 function queren(){
 	var newName = $("#newName1").val();
-	$("#newName2").html(newName);
-	$("#newName1").hide();
-	$("#newName2").show();
-	$(".queren").hide();
-	$(".quxiao").hide();
+	var p_id = $("#pId").val();
+	var categoryLength = $("#categoryLength").val();
+	
+	
 	$.ajax({
-		
+		url:'${ctx}/addCategory',
+		type:'POST',
+		data:{'title':newName,'pId':p_id,'length':categoryLength},
+		success:function(data){
+			if(data.message != 'false'){
+				$("#newName2").html(newName);
+				$("#newName1").hide();
+				$("#newName2").show();
+				$(".queren").hide();
+				$(".quxiao").hide();
+				window.location.href="${ctx}/"+data.message;
+			}else{
+				alert("文件夹已存在");				
+			}
+		}
 	});
 }
 

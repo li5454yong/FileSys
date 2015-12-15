@@ -81,6 +81,8 @@ public class UserController extends BasicController{
 			
 			List<Category> categoryList = categoryService.getCategoryList("0",user.getId());
 			List<Files> fileList = filesService.getFileList("0",user.getId());
+			
+			map.addAttribute("categoryLength", categoryList.size());
 			map.addAttribute("fileList", fileList);
 			map.addAttribute("categoryList", categoryList);
 		}else{

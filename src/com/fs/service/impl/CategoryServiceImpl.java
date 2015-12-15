@@ -22,18 +22,24 @@ public class CategoryServiceImpl implements CategoryService{
 	private CategoryDao dao;
 
 	@Override
-	public boolean getCategoryByName(String name,int u_id){
-		String hql = "from Category where title=? and u_id=?";
-		List<Category> list = dao.findEntity(hql, name,u_id);
+	public boolean getCategoryByName(String name,int u_id,String pId){
+		String hql = "from Category where title=? and u_id=? and p_id=?";
+		List<Category> list = dao.findEntity(hql, name,u_id,pId);
 		
 		if(list.size() == 0){
-			return false;
+			return true; //表示该分类不存在
 		}else{
-			return true;
+			return false;
 		}
 	}
 	
 	public List<Category> getCategoryList(String p_id,int u_id){
 		return dao.getCategoryList(p_id,u_id);
+	}
+
+	@Override
+	public void save(Category category) {
+		dao.save(category);
+		
 	}
 }

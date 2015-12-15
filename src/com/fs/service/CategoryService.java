@@ -11,7 +11,12 @@ import com.fs.entity.Category;
  */
 public interface CategoryService {
 
-	public boolean getCategoryByName(String name,int u_id);
+	//验证该分类是否存在
+	public boolean getCategoryByName(String name,int u_id,String pId);
 	
+	//获取分类（文件夹）列表
 	public List<Category> getCategoryList(String p_id,int u_id);
+	
+	//新增分类
+	public void save(Category category);
 }
