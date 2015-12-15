@@ -3,18 +3,20 @@
  <%@ include file="/WEB-INF/page/tag/tag.jsp" %>
 <!DOCTYPE html>
 <html>
-
 	<head>
-		<meta charset="utf-8" />
-		<title>云数据</title>
-		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
-		<link rel="stylesheet" href="${ctx }/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="${ctx }/css/style.css" />
-		<!--标签云js引入-->
-		<script type="text/javascript" src="${ctx }/js/script.js"></script>
-		<!--标签云结束-->
-		<script type="text/javascript" src="${ctx }/js/jquery.min.js"></script>
-
+	<meta charset="utf-8" />
+	<title>云数据</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+	<link rel="stylesheet" href="${ctx }/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="${ctx }/css/style.css" />
+	<!--标签云js引入-->
+	<script type="text/javascript" src="${ctx }/js/script.js"></script>
+	<!--标签云结束-->
+	<script type="text/javascript" src="${ctx }/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctx }/js/json2.js"></script>
+	<!-- 个人中心页面js -->
+	<script type="text/javascript" src="${ctx }/js/mycenter.js"></script>
+	
 	</head>
 
 	<body>
@@ -153,7 +155,8 @@
 									<span class="checkboxbg"></span>
 									<div class="grzx-right-main-list">
 										<span class="grzx-right-wjm">
-											<img src="${ctx }/img/wenjianjia.png" />${item.title }
+											<img src="${ctx }/img/wenjianjia.png" />
+											<a href="javascript:next('${item.self_id }');">${item.title }</a>
 										</span>
 										<span class="grzx-right-dx">--</span>
 										<span class="grzx-right-time">
@@ -197,67 +200,8 @@
 			</div>
 
 		</div>
-
-<script>
-function selectAll() {
-	var checklist = document.getElementsByName("selected");
-	if (document.getElementById("controlAll").checked) {
-		for (var i = 0; i < checklist.length; i++) {
-			checklist[i].checked = 1;
-		}
-	} else {
-		for (var j = 0; j < checklist.length; j++) {
-			checklist[j].checked = 0;
-		}
-	}
-}
-
-var windowwidth;
-var windowheight;
-var checkmenu;
-$(window).ready(function() {
-	$('#myMenu').hide();
-	$('#textbox').bind("contextmenu", function(e) {
-		windowwidth = $(window).width();
-		windowheight = $(window).height();
-		checkmenu = 1;
-		$('#mask').css({
-			'height': windowheight,
-			'width': windowwidth
-		});
-		$('#myMenu').show(0);
-		$('#myMenu').css({
-			'top': e.pageY-45 + 'px',
-			'left': e.pageX-80 + 'px'
-		});
-		return false;
-	});
-	$('#mask').click(function() {
-		$(this).height(0);
-		$(this).width(0);
-		$('#myMenu').hide(0);
-		checkmenu = 0;
-		return false;
-	});
-	$('#mask').bind("contextmenu", function() {
-		$(this).height(0);
-		$(this).width(0);
-		$('#myMenu').hide(0);
-		checkmenu = 0;
-		return false;
-	});
-	$(window).resize(function() {
-		if (checkmenu == 1) {
-			windowwidth = $(window).width();
-			windowheight = $(window).height();
-			$('#mask').css({
-				'height': windowheight,
-				'width': windowwidth,
-			});
-		}
-	});
-});
-
+	</body>
+<script type="text/javascript">
 //新建文件夹按钮响应函数
 function createWJJ(){
 	var str = '<div id="adds" class="textbox-1" style="position: relative;"><label>'
@@ -278,6 +222,7 @@ function createWJJ(){
 	$("#textbox").append(str);
 }
 
+//新建文件夹 确认按钮事件
 function queren(){
 	var newName = $("#newName1").val();
 	var p_id = $("#pId").val();
@@ -303,11 +248,27 @@ function queren(){
 	});
 }
 
+
+// 新建文件夹 取消按钮事件
 function quxiao(){
 	$("#adds").remove();
 }
+
+
+//加载文件夹内内容
+function next(selfId){
+	$.ajax({
+		url:'${ctx}/getNextContent',
+		type:'POST',
+		data:{'selfId':selfId},
+		success:function(data){
+			var d = data.message;
+			if(d != "toLogin"){
+				var jsonObj = d.split("@LXG");
+				var jsonObj1 = JSON.parse(d[0]);
+			}
+		}
+	});
+}
 </script>
-
-	</body>
-
 </html>

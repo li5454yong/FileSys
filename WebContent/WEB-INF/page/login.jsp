@@ -34,7 +34,7 @@
 				<form action="" method="post">
 					<input type="text" name="username" class="username" placeholder="用户名">
 					<input type="password" name="password" class="password" placeholder="密码">
-					<button type="button" onclick="login();">登录</button>
+					<button type="button" id="login" onclick="login();">登录</button>
 					
 					<div class="error"><span>+</span></div>
 				</form>
@@ -51,6 +51,15 @@
 
 	</body>
 <script type="text/javascript">
+
+$(function(){
+	document.onkeydown = function(e){
+	var ev = document.all ? window.event : e;
+	if(ev.keyCode==13) {
+		login();
+	}
+	}
+});
 function login(){
 	var username = $("input[name=username]").val();
 	var password = $("input[name=password]").val();
