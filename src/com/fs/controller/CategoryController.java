@@ -24,6 +24,12 @@ public class CategoryController extends BasicController{
 	@Resource
 	private CategoryService service;
 	
+	/**
+	 * 添加分类
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	@RequestMapping("addCategory")
 	public void addCategory(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		User user = getAuthUser();
