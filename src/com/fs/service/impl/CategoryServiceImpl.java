@@ -27,13 +27,19 @@ public class CategoryServiceImpl implements CategoryService{
 		List<Category> list = dao.findEntity(hql, name,u_id);
 		
 		if(list.size() == 0){
-			return false;
+			return true; //表示该分类不存在
 		}else{
-			return true;
+			return false;
 		}
 	}
 	
 	public List<Category> getCategoryList(String p_id,int u_id){
 		return dao.getCategoryList(p_id,u_id);
+	}
+
+	@Override
+	public void save(Category category) {
+		dao.save(category);
+		
 	}
 }

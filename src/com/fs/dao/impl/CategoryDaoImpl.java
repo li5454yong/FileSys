@@ -36,6 +36,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		return query.list();
 	}
 
+	//获取分类（文件夹）列表
 	@Override
 	public List<Category> getCategoryList(String p_id,int u_id) {
 		try {
@@ -49,5 +50,10 @@ public class CategoryDaoImpl implements CategoryDao {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	//新增分类
+	public void save(Category category){
+		sf.getCurrentSession().save(category);
 	}
 }

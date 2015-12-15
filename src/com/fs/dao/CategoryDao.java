@@ -14,4 +14,7 @@ public interface CategoryDao{
 	public List<Category> findEntity(String hql, Object... objects);
 	
 	public List<Category> getCategoryList(String p_id,int u_id);
+	
+	//新增分类
+	public void save(Category category);
 }

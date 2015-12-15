@@ -258,6 +258,8 @@
 								</div>
 							</label>
 						</div> --%>
+						<input type="hidden" id="categoryLength" value="${categoryLength }">
+						<input type="hidden" id="pId" value="0">
 					</div>
 					<div id="myMenu">
 						<table cellspace="3">
@@ -356,13 +358,21 @@ function createWJJ(){
 
 function queren(){
 	var newName = $("#newName1").val();
+	var p_id = $("#pId").val();
+	var categoryLength = $("#categoryLength").val();
+	
 	$("#newName2").html(newName);
 	$("#newName1").hide();
 	$("#newName2").show();
 	$(".queren").hide();
 	$(".quxiao").hide();
 	$.ajax({
-		
+		url:'${ctx}/addCategory',
+		type:'POST',
+		data:{'title':newName,'pId':p_id,'selfId':p_id+(parseInt(categoryLength)+1)},
+		success:function(data){
+			alert(data.message);
+		}
 	});
 }
 
