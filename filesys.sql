@@ -31,7 +31,7 @@ CREATE TABLE `category` (
   `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
   `upd_date` datetime DEFAULT NULL COMMENT '记录更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,4,'0','10','教程','2015-12-13 17:38:43','2015-12-13 17:38:46');
+INSERT INTO `category` VALUES (1,4,'0','10','教程','2015-12-13 17:38:43','2015-12-13 17:38:46'),(3,4,'0','11','新建文件夹','2015-12-15 21:06:41','2015-12-15 21:06:41'),(4,4,'0','12','新建文件夹1','2015-12-15 21:07:55','2015-12-15 21:07:55'),(6,4,'10','1010','新建文件夹','2015-12-16 20:25:11','2015-12-16 20:25:11'),(7,4,'10','1011','新建文件夹1','2015-12-16 20:41:32','2015-12-16 20:41:32'),(8,4,'1010','101010','新建文件夹','2015-12-16 20:56:02','2015-12-16 20:56:02'),(9,4,'10','1012','新建文件夹2','2015-12-16 21:14:46','2015-12-16 21:14:46'),(10,4,'1010','101011','新建文件夹1','2015-12-16 21:15:06','2015-12-16 21:15:06'),(11,4,'101011','10101110','新建文件夹','2015-12-16 21:18:28','2015-12-16 21:18:28'),(12,4,'11','1110','新建文件夹','2015-12-16 21:18:57','2015-12-16 21:18:57'),(13,4,'1110','111010','新建文件夹','2015-12-16 21:19:02','2015-12-16 21:19:02'),(14,4,'1110','111011','新建文件夹1','2015-12-16 21:19:10','2015-12-16 21:19:10');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +126,7 @@ CREATE TABLE `user` (
   `init_date` datetime DEFAULT NULL COMMENT '记录生成时间',
   `upd_date` datetime DEFAULT NULL COMMENT '记录更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,4 +148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-13 21:06:36
+-- Dump completed on 2015-12-16 22:15:59

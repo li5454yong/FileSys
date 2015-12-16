@@ -183,9 +183,9 @@
 								</label>
 							</div>
 						 </c:forEach>
-						<input type="hidden" id="categoryLength" value="${categoryLength }">
-						<input type="hidden" id="pId" value="0">
 					</div>
+					<input type="hidden" id="categoryLength" value="${categoryLength }">
+					<input type="hidden" id="pId" value="${pId }">
 					<div id="myMenu">
 						<table cellspace="3">
 							<tr><td>下载</td></tr>
@@ -240,7 +240,7 @@ function queren(){
 				$("#newName2").show();
 				$(".queren").hide();
 				$(".quxiao").hide();
-				window.location.href="${ctx}/"+data.message;
+				window.location.href="${ctx}/"+data.message+"?pId="+p_id;
 			}else{
 				alert("文件夹已存在");				
 			}
@@ -257,18 +257,52 @@ function quxiao(){
 
 //加载文件夹内内容
 function next(selfId){
-	$.ajax({
+	window.location.href="${ctx}/toMycenter?pId="+selfId;
+	/*$.ajax({
 		url:'${ctx}/getNextContent',
 		type:'POST',
 		data:{'selfId':selfId},
 		success:function(data){
+			
+			var str = '';
+			$("#pId").val(selfId);
+			
 			var d = data.message;
 			if(d != "toLogin"){
 				var jsonObj = d.split("@LXG");
-				var jsonObj1 = JSON.parse(d[0]);
+				var jsonObj1 = JSON.parse(jsonObj[0]);
+				var jsonObj2 = JSON.parse(jsonObj[1]);
+				if(jsonObj1.length == 0 && jsonObj2.length == 0){
+					$("#textbox").html("暂无内容");
+				}else{
+					$.each(jsonObj1,function(i,item){
+						str += '<div class="textbox-1" style="position: relative;">'
+							+'<label>'
+							+'<input type="checkbox" name="selected" />'
+							+'<span class="checkboxbg"></span>'
+							+'<div class="grzx-right-main-list">'
+							+'<span class="grzx-right-wjm">'
+							+'<img src="${ctx }/img/wenjianjia.png" />'
+							+'<a href="javascript:next('+item.self_id+');">'+item.title+'</a>'
+							+'</span>'
+							+'<span class="grzx-right-dx">--</span>'
+							+'<span class="grzx-right-time">'
+							+fromatDate(new Date(item.upd_date))
+							+'</span>'
+						+'</div>'
+						+'</label>'
+						+'</div>';
+					});
+					$("#categoryLength").val(jsonObj1.length);
+					$("#textbox").html(str);
+				}
+				
 			}
 		}
-	});
+	});*/
 }
+
+
+
 </script>
 </html>
