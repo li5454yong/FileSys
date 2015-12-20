@@ -42,4 +42,10 @@ public class CategoryServiceImpl implements CategoryService{
 		dao.save(category);
 		
 	}
+
+	@Override
+	public List<Category> getParentList(String seltId) {
+		// TODO Auto-generated method stub
+		return dao.getParentList(seltId);
+	}
 }

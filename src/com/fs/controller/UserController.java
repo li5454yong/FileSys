@@ -75,20 +75,25 @@ public class UserController extends BasicController{
 	
 	//跳转到个人中心
 	@RequestMapping("toMycenter")
-	public String toMycenter(Model map,String pId){
+	public String toMycenter(Model map,String pId,String selfId){
 		User user = getAuthUser();
-		if(null == pId){
+		if(null == pId || "".equals(pId)){
 			pId = "0";
+		}
+		if(null == selfId || "".equals(selfId)){
+			selfId = "0";
 		}
 		if(user != null){
 			
 			List<Category> categoryList = categoryService.getCategoryList(pId,user.getId());
 			List<Files> fileList = filesService.getFileList(pId,user.getId());
+			List<Category> parentList = categoryService.getParentList(selfId);
 			
 			map.addAttribute("categoryLength", categoryList.size());
 			map.addAttribute("fileList", fileList);
 			map.addAttribute("categoryList", categoryList);
 			map.addAttribute("pId", pId);
+			map.addAttribute("parentList", parentList);
 		}else{
 			return redirect("toLogin");
 		}

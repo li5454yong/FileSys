@@ -1,6 +1,7 @@
 package com.fs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fs.entity.Category;
 
@@ -14,6 +15,8 @@ public interface CategoryDao{
 	public List<Category> findEntity(String hql, Object... objects);
 	
 	public List<Category> getCategoryList(String p_id,int u_id);
+	
+	public List<Category> getParentList(String seltId);
 	
 	//新增分类
 	public void save(Category category);

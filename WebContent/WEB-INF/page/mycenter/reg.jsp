@@ -54,7 +54,7 @@
 								<span class="tips" id="divmail"></span>
 							</li>
 						</ul>
-						<b class="btn"><input type="submit" value="提交"/>
+						<b class="btn1"><input type="submit" value="提交"/>
 										<input type="reset" value="取消"/></b>
 					</form>
 				</div>

@@ -2,6 +2,7 @@ body {
 	font-family: "微软雅黑";
 	padding: 0;
 	margin: 0;
+	overflow-x:hidden;
 }
 
 a {
@@ -219,15 +220,28 @@ a {
 	background-image: url(../img/xinjianwenjianjia.png);
 	color: #fff;
 }
-
+.grzx-but-reaches{
+	
+	margin:0px 0px 8px 10px;
+}
+.grzx-but-reaches a{
+	color:#0066CC;
+}
+.btn.focus, .btn:focus, .btn:hover{
+	color:#fff !important;
+}
 
 /*页面右侧  文件列表主要内容*/
 
 .grzx-right-main {
-	border: 1px solid #EAEAEA;
+	border: 1px solid #eaeaea;
 	border-top: none;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	/* background:url(../img/no-content.jpg) no-repeat;
+	min-height:700px;
+	background-position:0px 50px; */
+	margin-bottom:10px;
 }
 
 .grzx-right-main-title {
@@ -301,7 +315,7 @@ a {
 	height: 50px;
 	line-height: 45px;
 	padding: 0px 7px;
-	border-top: 1px solid #EAEAEA;
+	border-bottom: 1px solid #EAEAEA;
 	background: #fff;
 	display: inline-block;
 	width: 918px;
@@ -603,13 +617,13 @@ label {
 	/*padding-right: 70px;*/
 }
 
-.btn {
+.btn1 {
 	position: relative;
 	left: 40px;
 	top: 20px;
 }
 
-.btn input[type="submit"] {
+.btn1 input[type="submit"] {
 	width: 150px;
 	height: 40px;
 	border: none;
@@ -622,7 +636,7 @@ label {
 	letter-spacing: 3px;
 }
 
-.btn input[type="reset"] {
+.btn1 input[type="reset"] {
 	width: 150px;
 	height: 40px;
 	border: none;

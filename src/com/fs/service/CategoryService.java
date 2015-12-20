@@ -19,4 +19,7 @@ public interface CategoryService {
 	
 	//新增分类
 	public void save(Category category);
+	
+	//获取所有父类
+	public List<Category> getParentList(String seltId);
 }
