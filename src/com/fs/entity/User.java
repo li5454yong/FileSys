@@ -3,6 +3,7 @@ package com.fs.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -32,6 +33,7 @@ public class User {
 	private Date upd_date;
 
 	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}

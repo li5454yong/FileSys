@@ -85,9 +85,12 @@ public class UserController extends BasicController{
 		}
 		if(user != null){
 			
+			//加载的文件夹列表
 			List<Category> categoryList = categoryService.getCategoryList(pId,user.getId());
+			//加载的文件列表
 			List<Files> fileList = filesService.getFileList(pId,user.getId());
-			List<Category> parentList = categoryService.getParentList(selfId);
+			//加载的浏览导航
+			List<Category> parentList = categoryService.getParentList(selfId,user.getId());
 			
 			map.addAttribute("categoryLength", categoryList.size());
 			map.addAttribute("fileList", fileList);
