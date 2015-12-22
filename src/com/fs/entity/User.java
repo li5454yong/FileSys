@@ -24,7 +24,7 @@ public class User {
 	
 	private double memory_space;
 	
-	private double used_space;
+	private float used_space;
 	
 	private Date reg_date;
 	
@@ -74,11 +74,13 @@ public class User {
 		this.memory_space = memory_space;
 	}
 
-	public double getUsed_space() {
+
+
+	public float getUsed_space() {
 		return used_space;
 	}
 
-	public void setUsed_space(double used_space) {
+	public void setUsed_space(float used_space) {
 		this.used_space = used_space;
 	}
 

@@ -12,5 +12,6 @@ import com.fs.entity.Files;
 public interface FilesService {
 	public List<Files> getFileList(String p_id,int u_id);
 	
-	public void save(Files file);
+	public void save(Files file,float size,int user_id);
+	
 }

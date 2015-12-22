@@ -3,9 +3,11 @@ package com.fs.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.fs.entity.Category;
 import com.fs.entity.Files;
 import com.fs.entity.User;
+import com.fs.service.CategoryService;
 import com.fs.service.FilesService;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+import com.fs.service.UserService;
 
 @Controller
 public class UploadController extends BasicController {
@@ -28,28 +32,39 @@ public class UploadController extends BasicController {
 	@Resource
 	private FilesService service;
 	
+	@Resource
+	private CategoryService categoryService;
+	
 	@RequestMapping("upload")
-	public String upload(HttpServletRequest request, HttpServletResponse response){
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+	public void upload(HttpServletRequest request, PrintWriter out){
 		String pId = request.getParameter("pId"); //文件所属分类
 		User user = getAuthUser();
 		Files files = new Files();
 		if(user != null){
+			
+			List<Category> parentList = categoryService.getParentList(pId,user.getId());
+			
 			CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			Iterator<String> t = multiRequest.getFileNames();
 			MultipartFile fileDetail = multiRequest.getFile(t.next());
+			
+			
 			if (fileDetail != null) {
 				String fileName = fileDetail.getOriginalFilename();
 				String type = fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()).toLowerCase();
 				Long size = fileDetail.getSize();
-				String path = "D:/FileSys/upload/" + user.getUsername();
-				File file = new File(path);
+				
+				StringBuilder sb = new StringBuilder("D:/FileSys/upload/" + user.getUsername());
+
+				for(Category category : parentList){
+					sb.append("/"+category.getTitle());
+				}
+				File file = new File(sb.toString());
 				if(!file.exists()){
 					file.mkdirs();
 				}
-				File localFile = new File(path+"/"+fileName);
+				File localFile = new File(sb.toString()+"/"+fileName);
 				
 				//将上传文件写入到指定文件
 				try {
@@ -57,7 +72,7 @@ public class UploadController extends BasicController {
 					
 					files.setCategory_id(pId);
 					files.setFilename(fileName);
-					files.setFilepath(path+"/"+fileName);
+					files.setFilepath(sb.toString()+"/"+fileName);
 					files.setFilesize(getFileSize(size));
 					files.setFiletype(type);
 					files.setUser_id(user.getId());
@@ -65,19 +80,19 @@ public class UploadController extends BasicController {
 					files.setUpd_date(new Date());
 					files.setInit_date(new Date());
 					files.setIcon_path(getIconPath(type));
-					service.save(files);
+					service.save(files,getDoubleSize(size), user.getId());
+					
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				//非常重要、有了这个想做什么处理都可以
-				//fileDetail.getInputStream();
 			}
+			out.write("toMycenter?pId="+pId+"&selfId="+pId);
 		}else{
-			return redirect("toLogin");
+			out.write("toLogin");
 		}
-		return redirect("toMycenter");
+		
 	}
 	
 	/**
@@ -102,7 +117,15 @@ public class UploadController extends BasicController {
 		return sb.toString();
 	}
 	
-	
+	/**
+	 * 计算文件大小
+	 * @param size
+	 * @return
+	 */
+	public float getDoubleSize(Long size){
+		float s = (float) (size * 100 / (1024.0 * 1024.0) / 100.0);
+		return s;
+	}
 	/**
 	 * 根据文件类型获取文件类型的图标
 	 * @param type
@@ -121,6 +144,12 @@ public class UploadController extends BasicController {
 			case "png": path = "img/png.png";break;
 			case "pdf": path = "img/pdf.png";break;
 			case "xlsx": path = "img/xlsx_win.png";break;
+			case "txt": path = "img/text.png";break;
+			case "avi": path = "img/avi.png";break;
+			case "doc": path = "img/docx_win.png";break;
+			case "docx": path = "img/docx_win.png";break;
+			case "psd": path = "img/psd.png";break;
+			case "mp3": path = "img/mp3.png";break;
 			
 			default:path = "img/ysj.png";break;
 		}

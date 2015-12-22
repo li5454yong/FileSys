@@ -110,8 +110,8 @@
 					<div class="jindutiao">
 						<div class="progress ">
 							<div class="progress-bar" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-								60%</div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+								40%</div>
 						</div>
 						&nbsp;&nbsp;216.63GB/11.51TB
 					</div>
@@ -212,7 +212,7 @@
 							</label>
 						</div>
 					</c:forEach>
-					<c:if test="${categoryLength == 0 }">
+					<c:if test="${categoryLength == 0 && fileLength == 0}">
 						<div class="no-content" >
 							<img src="${ctx }/img/no-content.jpg" />
 						</div>
@@ -221,6 +221,7 @@
 				</div>
 				<input type="hidden" id="categoryLength" value="${categoryLength }">
 				<input type="hidden" id="pId" value="${pId }">
+				
 				<div id="myMenu">
 					<table cellspace="3">
 						<tr>
@@ -283,7 +284,12 @@
 				+ '<span class="grzx-right-time"></span>'
 				+ '</div>'
 				+ '</label>' + '</div>';
-		$("#textbox").append(str);
+		if('${fileLength}'==0&&'${categoryLength}'==0){
+			$("#textbox").html(str);
+		}else{
+			$("#textbox").append(str);
+		}
+		
 	}
 
 	//新建文件夹 确认按钮事件
@@ -319,6 +325,12 @@
 	// 新建文件夹 取消按钮事件
 	function quxiao() {
 		$("#adds").remove();
+		var str = '<div class="no-content" >'
+			+'<img src="${ctx }/img/no-content.jpg" />'
+			+'</div>';
+		if('${fileLength}'==0&&'${categoryLength}'==0){
+			$("#textbox").html(str);
+		}
 	}
 
 	

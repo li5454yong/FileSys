@@ -214,6 +214,7 @@ $.fn.Huploadify = function(opts){
 				  xhr.onreadystatechange = function(e) {
 					  if (xhr.readyState == 4) {
 						  if (xhr.status == 200) {
+							  //alert(xhr.responseText);
 							  //校正进度条和上传比例的误差
 							  var thisfile = _this.find('#fileupload_'+instanceNumber+'_'+file.index);
 							  thisfile.find('.uploadify-progress-bar').css('width','100%');
@@ -225,6 +226,8 @@ $.fn.Huploadify = function(opts){
 							  setTimeout(function(){
 							  	_this.find('#fileupload_'+instanceNumber+'_'+file.index).fadeOut();
 							  },option.removeTimeout);
+							  
+							  window.location.href=xhr.responseText;
 						  } else {
 							  option.onUploadError&&option.onUploadError(file, xhr.responseText);		
 						  }
@@ -246,7 +249,7 @@ $.fn.Huploadify = function(opts){
 				  	}
 				  }
 				  xhr.send(fd);
-				  
+				  xhr
 			  }	
 			  
 				  

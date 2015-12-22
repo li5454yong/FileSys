@@ -40,6 +40,11 @@ public class UserServiceImpl implements
 		dao.userReg(obj);
 	}
 
+	@Override
+	public void updateSpace(float size, int id) {
+		dao.updateSpace(size, id);
+	}
+
 	
 
 }

@@ -13,4 +13,7 @@ import com.fs.entity.User;
 public interface UserDao {
 	public void userReg(Object... obj);
 	public List<User> findEntity(String hql, Object... objects);
+	
+	public void updateSpace(float size,int id);
+	
 }

@@ -97,6 +97,7 @@ public class UserController extends BasicController{
 			map.addAttribute("categoryList", categoryList);
 			map.addAttribute("pId", pId);
 			map.addAttribute("parentList", parentList);
+			map.addAttribute("fileLength", fileList.size());
 		}else{
 			return redirect("toLogin");
 		}

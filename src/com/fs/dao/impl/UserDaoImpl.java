@@ -33,13 +33,27 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void userReg(Object... obj){
-		String sql = "insert into t_user(username,password,memory_space,reg_date,init_date,upd_date)"
+		String sql = "insert into User(username,password,memory_space,reg_date,init_date,upd_date)"
 				+ "values(?,?,?,?,?,?);";
 		SQLQuery query = sf.getCurrentSession().createSQLQuery(sql);
 		for(int i=0; i<obj.length; i++){
 			query.setParameter(i, obj[i]);
 		}
 		query.executeUpdate();
+		
+	}
+
+	@Override
+	public void updateSpace(float size,int id) {
+		try{
+			String sql = "update User set used_space=used_space+? where id=?";
+			Query query = sf.getCurrentSession().createQuery(sql);
+			query.setFloat(0, size);
+			query.setInteger(1, id);
+			query.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 }
