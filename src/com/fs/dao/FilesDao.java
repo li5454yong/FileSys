@@ -12,4 +12,6 @@ import com.fs.entity.Files;
 public interface FilesDao {
 	
 	public List<Files> getFileList(String sql,String p_id,int u_id);
+	
+	public void save(Files file);
 }

@@ -134,10 +134,10 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							<h4 class="modal-title" id="myModalLabel">上传文件</h4>
 						</div>
 						<div class="modal-body">
-						主题内容
+						<%@include file="/WEB-INF/page/file/uploadFile.jsp" %>
 						</div>
 						
 					</div>

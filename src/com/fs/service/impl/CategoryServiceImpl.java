@@ -44,8 +44,8 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public List<Category> getParentList(String seltId) {
+	public List<Category> getParentList(String seltId,int userId) {
 		// TODO Auto-generated method stub
-		return dao.getParentList(seltId);
+		return dao.getParentList(seltId,userId);
 	}
 }

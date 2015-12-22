@@ -27,4 +27,11 @@ public class FilesServiceImpl implements FilesService {
 		return dao.getFileList(sql,p_id,u_id);
 	}
 
+	@Override
+	public void save(Files file) {
+		
+		dao.save(file);
+		
+	}
+
 }

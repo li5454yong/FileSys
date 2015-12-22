@@ -39,4 +39,11 @@ public class FilesDaoImpl implements FilesDao {
 		}
 	}
 
+	@Override
+	public void save(Files file) {
+
+		sf.getCurrentSession().save(file);
+		
+	}
+
 }
