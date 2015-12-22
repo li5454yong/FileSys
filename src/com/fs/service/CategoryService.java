@@ -21,5 +21,5 @@ public interface CategoryService {
 	public void save(Category category);
 	
 	//获取所有父类
-	public List<Category> getParentList(String seltId);
+	public List<Category> getParentList(String seltId,int userId);
 }

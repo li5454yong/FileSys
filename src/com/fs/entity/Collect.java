@@ -3,6 +3,7 @@ package com.fs.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.Id;
  * 
  * 2015年12月7日下午9:35:46
  */
-@Entity(name="t_collect")
+@Entity
 public class Collect {
 	
 	private int id; // 主键 
@@ -26,6 +27,7 @@ public class Collect {
 	private Date upd_date;  // 记录更新时间
 
 	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}

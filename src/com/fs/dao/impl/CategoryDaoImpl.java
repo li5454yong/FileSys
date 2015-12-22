@@ -54,18 +54,19 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public List<Category> getParentList(String seltId) {
+	public List<Category> getParentList(String seltId,int userId) {
 		List<Category> list = new ArrayList<Category>();
 		String sql = "SELECT T2.self_id, T2.title,T2.p_id FROM "
 				+ "( SELECT @r AS _id,(SELECT @r\\:=p_id FROM category WHERE "
 				+ "self_id=_id) AS p_id,@l\\:=@l+1 AS lvl FROM (SELECT @r\\:=?, "
 				+ "@l\\:=0) vars,category h WHERE @r<>0) T1 JOIN category T2  ON"
-				+ " T1._id=T2.self_id ORDER BY T1.lvl DESC ";
+				+ " T1._id=T2.self_id where T2.u_id=? ORDER BY T1.lvl DESC ";
 		
 		SQLQuery query = sf.getCurrentSession().createSQLQuery(sql);
 		
 		
 		query.setString(0, seltId);
+		query.setInteger(1, userId);
 		Iterator it = query.list().iterator();
 		
 		while(it.hasNext()){

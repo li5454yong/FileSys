@@ -3,6 +3,7 @@ package com.fs.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -49,6 +50,7 @@ public class Files {
 	private String icon_path;
 
 	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
