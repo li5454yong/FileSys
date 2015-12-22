@@ -26,13 +26,13 @@ $(window).ready(function() {
 		windowheight = $(window).height();
 		checkmenu = 1;
 		$('#mask').css({
-			'height': windowheight,
+			'height': windowheight-60,
 			'width': windowwidth
 		});
 		$('#myMenu').show(0);
 		$('#myMenu').css({
-			'top': e.pageY-45 + 'px',
-			'left': e.pageX-80 + 'px'
+			'top': e.pageY-61 + 'px',
+			'left': e.pageX-75 + 'px'
 		});
 		return false;
 	});

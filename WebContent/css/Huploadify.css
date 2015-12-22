@@ -26,26 +26,35 @@
 	margin-top:10px;
 	}
 .uploadbtn,.delfilebtn{
+	margin:10px;
 	display:inline-block;
 	border:1px solid #999;
 	line-height:24px;
 	border-radius:4px;
-	padding:0 18px;
+	padding:2px 20px;
     font-size:12px;
-	color:#666;
+	color:#fff !important;
+	border:none;
+	background-color:#3281DE;
 	cursor:pointer;
 	/* background:url(images/btnbg.png) repeat-x 0 0; */
 	text-decoration:none;
 	}
-.up_filename,.progressnum,.delfilebtn,.uploadbtn,.up_percent{
+.progressnum,.delfilebtn,.uploadbtn,.up_percent{
 	font-size:12px;
 	color:#666;
 	margin-left:10px;
 	}
+.up_filename{
+	margin:10px 10px;
+	font-size:14px;
+	color:#444;
+}
+
 .uploadify-progress{
 	 display:inline-block; 
 	 width:200px; 
-	 height:10px; 
+	 height:25px; 
 	 background-color:white;
 	 border-radius:4px;
 	 border:2px groove #666;

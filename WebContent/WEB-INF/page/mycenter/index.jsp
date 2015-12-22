@@ -20,6 +20,15 @@
 <!-- bootstrap.js -->
 <script type="text/javascript" src="${ctx }/js/bootstrap.min.js"></script>
 
+<style>
+	.modal-header{
+		background:#96C0F2;
+		border-top-left-radius:5px;
+		color:#fff;
+		border-top-right-radius:5px;
+	}
+</style>
+
 </head>
 
 <body>
@@ -129,7 +138,7 @@
 				aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header" >
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -215,18 +224,40 @@
 				<div id="myMenu">
 					<table cellspace="3">
 						<tr>
-							<td>下载</td>
+							<td class="btn">下载</td>
 						</tr>
 						<tr>
-							<td>删除</td>
+							<td class="btn">删除</td>
 						</tr>
 						<tr>
-							<td>重命名</td>
+							<td class="btn">重命名</td>
 						</tr>
 						<tr>
-							<td>分享</td>
+							<td class="btn" data-toggle="modal" data-target="#myModal2">分享</td>
 						</tr>
 					</table>
+					
+					
+					<!-- 分享弹出层页面开始 -->
+					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header" >
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">上传文件</h4>
+								</div>
+								
+								
+							</div>
+						</div>
+					</div>
+					<!-- 分享弹出层页面结束 -->
+					
+					
 				</div>
 				<div id="mask"></div>
 

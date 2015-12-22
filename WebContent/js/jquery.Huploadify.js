@@ -1,6 +1,6 @@
 (function($){
 $.fn.Huploadify = function(opts){
-	var itemTemp = '<div id="${fileID}" class="uploadify-queue-item"><div class="uploadify-progress"><div class="uploadify-progress-bar"></div></div><span class="up_filename">${fileName}</span><span class="uploadbtn">上传</span><span class="delfilebtn">删除</span></div>';
+	var itemTemp = '<div id="${fileID}" class="uploadify-queue-item"><div class="uploadify-progress"><div class="uploadify-progress-bar"></div></div><div class="up_filename">${fileName}</div><div><span class="uploadbtn">上传</span><span class="delfilebtn">删除</span></div></div>';
 	var defaults = {
 		fileTypeExts:'',//允许上传的文件类型，格式'*.jpg;*.doc'
 		uploader:'',//文件提交的地址
