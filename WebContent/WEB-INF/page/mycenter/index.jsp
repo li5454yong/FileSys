@@ -124,7 +124,7 @@
 		<div class="grzx-right">
 			<div class="grzx-but-sc-xj">
 				<div class="grzx-but-sc">
-					<button class="btn" data-toggle="modal" data-target="#myModal">
+					<button class="btn" onclick="upload();"  data-toggle="modal" data-target="#myModal">
 						<img src="${ctx }/img/shangchuan.png" />上传
 					</button>
 				</div>
@@ -204,7 +204,7 @@
 								<div class="grzx-right-main-list">
 									<span class="grzx-right-wjm"> <img
 										src="${ctx }/${item.icon_path}" />${item.filename }
-									</span> <span class="grzx-right-dx">${item.filesize }&nbsp;M</span> <span
+									</span> <span class="grzx-right-dx">${item.filesize }&nbsp;</span> <span
 										class="grzx-right-time"> <fmt:formatDate
 											value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
@@ -321,6 +321,11 @@
 		$("#adds").remove();
 	}
 
+	
+	function upload(){
+		//alert(1);
+	}
+	
 	//加载文件夹内内容
 	function next(selfId) {
 		window.location.href = "${ctx}/toMycenter?pId=" + selfId+"&selfId="+selfId;

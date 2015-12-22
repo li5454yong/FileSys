@@ -21,7 +21,7 @@ public class Files {
 	
 	private String filename;
 	
-	private double filesize;
+	private String filesize;
 	
 	private String filepath;
 	
@@ -67,11 +67,13 @@ public class Files {
 		this.filename = filename;
 	}
 
-	public double getFilesize() {
+	
+
+	public String getFilesize() {
 		return filesize;
 	}
 
-	public void setFilesize(double filesize) {
+	public void setFilesize(String filesize) {
 		this.filesize = filesize;
 	}
 

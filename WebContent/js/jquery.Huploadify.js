@@ -87,12 +87,13 @@ $.fn.Huploadify = function(opts){
 				  			alert('文件'+thisFile.name+'大小超出限制！');
 				  			continue;
 				  		}
-						if($.inArray(thisFile.name.split('.').pop(),typeArray)>=0){
+				  		arr.push(thisFile);
+						/*if($.inArray(thisFile.name.split('.').pop(),typeArray)>=0){
 							arr.push(thisFile);	
 						}
 						else{
 							alert('文件'+thisFile.name+'类型不允许！');
-						}  	
+						} */ 	
 					}	
 				}
 			  return arr;  	
@@ -244,9 +245,8 @@ $.fn.Huploadify = function(opts){
 				  		fd.append(key,option.formData[key]);
 				  	}
 				  }
-				  alert(getFileTypes);
-				  fd.append("a","123");
 				  xhr.send(fd);
+				  
 			  }	
 			  
 				  

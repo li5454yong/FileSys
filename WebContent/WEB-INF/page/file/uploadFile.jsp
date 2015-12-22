@@ -14,16 +14,16 @@
 $(function(){
 	$('#upload').Huploadify({
 		auto:false,
-		fileTypeExts:'*.jpg;*.png;*.exe;*.zip;*.rar',
+		fileTypeExts:'*.jpg;*.png;*.exe;*.zip;*.rar;*.pdf',
 		multi:true,
-		formData:{key:123456,key2:'vvvv'},
+		formData:{pId:'${pId}'},
 		//fileSizeLimit:99999999,
 		showUploadedPercent:true,//是否实时显示上传的百分比，如20%
 		showUploadedSize:true,
 		removeTimeout:99999,
 		uploader:'upload',
 		onUploadStart:function(){
-			//alert();
+			//alert('${pId}');
 			},
 		onInit:function(){
 			//alert('初始化');
