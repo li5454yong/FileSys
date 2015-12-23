@@ -153,7 +153,7 @@ public class UploadController extends BasicController {
 			case "gif": path = "img/gif.png";break;
 			case "exe": path = "img/exe.png";break;
 			case "mp4": path = "img/mp4.png";break;
-			
+			case "vsd": path = "img/vsd.png";break;
 			
 			default:path = "img/ysj.png";break;
 		}

@@ -62,6 +62,10 @@ $(window).ready(function() {
 	});
 });
 
+function hideMenu(){
+	alert(1);
+}
+
 
 function fromatDate(date){
 	var year = date.getFullYear();

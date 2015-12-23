@@ -234,7 +234,7 @@
 							<td class="btn">重命名</td>
 						</tr>
 						<tr class="share">
-							<td class="btn" data-toggle="modal" data-target="#myModal2">分享</td>
+							<td class="btn"  data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">分享</td>
 						</tr>
 					</table>
 					
@@ -257,7 +257,7 @@
 										<div><button>创建私密链接</button><span>只有分享的好友能看到，其他人都看不到</span></div>
 									</div>
 									
-									<div class="share-modal-simi">
+									<!-- <div class="share-modal-simi">
 										<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>
 										<input type="text"  /><br>
 										<button>复制链接和提取码</button>
@@ -272,7 +272,7 @@
 											<p>1、生成文件下载链接</p>
 											<p>2、把链接通过QQ、微博、人人网、QQ空间等方式分享给好友</p>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								
 							</div>
@@ -357,7 +357,7 @@
 
 	
 	function upload(){
-		//alert(1);
+		alert(1);
 	}
 	
 	//加载文件夹内内容
