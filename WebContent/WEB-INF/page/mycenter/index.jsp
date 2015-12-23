@@ -224,16 +224,16 @@
 				
 				<div id="myMenu">
 					<table cellspace="3">
-						<tr>
+						<tr class="xiazai">
 							<td class="btn">下载</td>
 						</tr>
-						<tr>
+						<tr class="shanchu">
 							<td class="btn">删除</td>
 						</tr>
-						<tr>
+						<tr class="name">
 							<td class="btn">重命名</td>
 						</tr>
-						<tr>
+						<tr class="share">
 							<td class="btn" data-toggle="modal" data-target="#myModal2">分享</td>
 						</tr>
 					</table>
@@ -243,15 +243,37 @@
 					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel">
 						<div class="modal-dialog" role="document">
-							<div class="modal-content">
+							<div class="modal-content" >
 								<div class="modal-header" >
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="myModalLabel">上传文件</h4>
+									<h4 class="modal-title" id="myModalLabel">分享：文件名</h4>
 								</div>
-								
+								<div class="modal-body" style="background:#fff;padding:20px 40px" >
+									<div class="share-modal">
+										<div><button>创建公开链接</button><span>文件会出现在您的分享主页，其他人都能查看下载</span></div>
+										<div><button>创建私密链接</button><span>只有分享的好友能看到，其他人都看不到</span></div>
+									</div>
+									
+									<div class="share-modal-simi">
+										<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>
+										<input type="text"  /><br>
+										<button>复制链接和提取码</button>
+									</div>
+									
+									
+									<div class="share-modal-gongkai">
+										<p>公开链接</p>
+										<div class="share-modal-gongkai-con">
+											<span>成功创建公开链接</span>
+											<input type="text"><button>复制链接</button>
+											<p>1、生成文件下载链接</p>
+											<p>2、把链接通过QQ、微博、人人网、QQ空间等方式分享给好友</p>
+										</div>
+									</div>
+								</div>
 								
 							</div>
 						</div>

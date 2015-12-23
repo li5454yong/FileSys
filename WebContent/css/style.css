@@ -941,3 +941,94 @@ label {
 	color: #3281DE;
 }
 /*下载页面css结束*/
+
+
+/* 分享弹出层css开始 */
+.share-modal{
+	margin:20px auto;
+	background:#fbfbfb;
+	border:1px solid #F8F8F9;
+}
+.share-modal div{
+	margin:40px 20px;
+}
+.share-modal button{
+	border:none;
+	border-radius:5px;
+	background-color:#3281DE;
+	color:#fff;
+	padding:8px 13px;
+	margin-right:15px;
+}
+
+
+
+/* 私密分享css开始 */
+.share-modal-simi{
+	margin:20px auto;
+	background:#fbfbfb;
+	border:1px solid #F8F8F9;
+	padding:20px;
+}
+
+.share-modal-simi button{
+	border:none;
+	border-radius:5px;
+	background-color:#3281DE;
+	color:#fff;
+	padding:8px 13px;
+}
+.share-modal-simi input{
+	width:450px;
+	height:30px;
+}
+.share-modal-simi p,.share-modal-simi input,.share-modal-simi button{
+	margin:10px 0px;
+}
+/* 私密分享css结束 */
+/* 公开分享css开始 */
+.share-modal-gongkai{
+	margin:20px auto;
+	background:#fbfbfb;
+	border:1px solid #F8F8F9;
+	padding:20px;
+}
+
+
+.share-modal-gongkai-con{
+	border:1px solid #F8F8F9;
+	background:#fff;
+	padding:20px;
+}
+.share-modal-gongkai-con span{
+	display:block;
+	color:#2E99F2;
+	font-size:18px;
+}
+.share-modal-gongkai-con input{
+	width:300px;
+	margin-right:10px;
+	height:30px;
+}
+.share-modal-gongkai-con button{
+	border:none;
+	border-radius:5px;
+	background-color:#3281DE;
+	color:#fff;
+	padding:8px 13px;
+}
+.share-modal-gongkai-con p{
+	margin-top:5px
+}
+
+/* 公开分享css结束 */
+/* 分享弹出层css结束 */
+
+
+
+
+
+
+
+
+
