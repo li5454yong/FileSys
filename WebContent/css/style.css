@@ -807,3 +807,137 @@ label {
 
 
 /*首页css结束*/
+
+
+/*下载页面css开始*/
+.down-content{
+	width: 1000px;
+	background: #FFFFFF;
+	/*height: 500px;*/
+	margin: 20px auto 20px auto;
+	padding: 10px;
+}
+.down-content-title{
+	padding: 10px;
+	position: relative;
+}
+.down-wjm{
+	font-weight: bold;
+	font-size: 16px;
+}
+.down-wjm img{
+	width: 30px;
+	display: inline-block;
+	margin-right: 5px;
+}
+.down-sc{
+	position: absolute;
+	right: 10px;
+	top:10px;
+}
+.down-sc button{
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: #FFFFFF;
+	background: #3281DE;
+	border: none;
+	margin-right: 15px;
+	
+}
+.down-sc button img{
+	width: 15px;
+}
+.down-content-sub-title{
+	
+}
+.down-content-sub-title ul{
+	list-style: none;
+	display: inline-block;
+	float: right;
+	padding: 0;
+	margin: 15px 10px 15px 0px ;
+}
+.down-content-sub-title ul li{
+	float: left;
+	border-right: 1px solid #EAEAEA;
+	display: inline-block;
+	padding: 0px 15px;
+	line-height: 15px;
+}
+.down-content-sub-title ul li:last-of-type{
+	border-right: none;
+}
+.down-content-sub-title ul li img{
+	display: inline-block;
+	width: 15px;
+	margin-right: 5px;
+}
+.down-content-main{
+	border: 1px solid #EAEAEA;
+	margin: 20px;
+	text-align: center;
+	padding: 150px 0px 40px 0px;
+}
+.down-content-main img{
+	width: 65px;
+}
+.down-content-main p{
+	line-height: 50px;
+	font-size: 16px;
+	color: #666666;
+	font-weight: 900;
+}
+.down-content-main button{
+	border: none;
+	background: #3281DE;
+	color: #FFFFFF;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+.share-time{
+	color: #A39EB2;
+	line-height: 50px;
+	text-align: right;
+}
+.down-pinglun-xiangqing{
+	font-weight: bold;
+	font-size: 16px;
+	margin: 20px ;
+}
+
+.down-pinglun-xiangqing img{
+	width: 25px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.down-pinglun  textarea{
+	width: 940px;
+	height: 60px;
+	display: block;
+	margin: 20px;
+	padding: 10px;
+	line-height: 20px;
+}
+.pinglun-but{
+	background:#E24C37 ;
+	border: none;
+	color: #FFFFFF;
+	border-radius: 5px;
+	padding: 8px 25px;
+	float: right;
+	margin-right: 20px;
+}
+.down-pinglun-list{
+	border-top: 1px solid #EAEAEA;
+	padding: 15px 10px;
+	margin: 20px 20px 0px 20px ;
+}
+.down-pinglun-list:last-of-type{
+	border-bottom: 1px solid #EAEAEA;
+}
+.down-pinglun-huifu{
+	display: block;
+	float: right;
+	color: #3281DE;
+}
+/*下载页面css结束*/

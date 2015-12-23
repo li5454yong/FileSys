@@ -31,7 +31,7 @@ public class FilesServiceImpl implements FilesService {
 		return dao.getFileList(sql,p_id,u_id);
 	}
 
-	@Transactional
+	@Transactional(rollbackFor = java.lang.Exception.class)
 	public void save(Files file,float size, int user_id) {
 		
 		dao.save(file);
