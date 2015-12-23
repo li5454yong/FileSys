@@ -16,6 +16,8 @@ function selectAll() {
 	}
 }
 
+
+
 var windowwidth;
 var windowheight;
 var checkmenu;
@@ -60,10 +62,23 @@ $(window).ready(function() {
 			});
 		}
 	});
+	
+	
+	$(".textbox-1").mousedown(function(e){
+		var checklist = $("input[name=selected]");
+		if(e.button == 2){
+			alert("2");
+		}
+		alert($(this).attr("fileId"));
+		for (var i = 0; i < checklist.length; i++) {
+			alert(checklist[i].checked == 1);
+		}
+	});
 });
 
 function hideMenu(){
-	alert(1);
+	$('#myMenu').hide();
+	
 }
 
 

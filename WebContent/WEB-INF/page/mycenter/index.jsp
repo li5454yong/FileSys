@@ -186,27 +186,28 @@
 							<label> <input type="checkbox" name="selected" /> <span
 								class="checkboxbg"></span>
 								<div class="grzx-right-main-list">
-									<span class="grzx-right-wjm"> <img
-										src="${ctx }/img/wenjianjia.png" /> <a
-										href="javascript:next('${item.self_id }');">${item.title }</a>
-									</span> <span class="grzx-right-dx">--</span> <span
-										class="grzx-right-time"> <fmt:formatDate
-											value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+									<span class="grzx-right-wjm"> 
+									<img src="${ctx }/img/wenjianjia.png" /> 
+									<a href="javascript:next('${item.self_id }');">${item.title }</a>
+									</span> <span class="grzx-right-dx">--</span> 
+									<span class="grzx-right-time"> 
+										<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
 								</div>
 							</label>
 						</div>
 					</c:forEach>
 					<c:forEach items="${fileList }" var="item">
-						<div class="textbox-1" style="position: relative;">
-							<label> <input type="checkbox" name="selected" /> <span
-								class="checkboxbg"></span>
+						<div class="textbox-1" fileId=${item.id } style="position: relative;">
+							<label> <input type="checkbox" name="selected" /> 
+							<span class="checkboxbg"></span>
 								<div class="grzx-right-main-list">
-									<span class="grzx-right-wjm"> <img
-										src="${ctx }/${item.icon_path}" />${item.filename }
-									</span> <span class="grzx-right-dx">${item.filesize }&nbsp;</span> <span
-										class="grzx-right-time"> <fmt:formatDate
-											value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+									<span class="grzx-right-wjm"> 
+									<img src="${ctx }/${item.icon_path}" />${item.filename }
+									</span> 
+									<span class="grzx-right-dx">${item.filesize }&nbsp;</span> 
+									<span class="grzx-right-time"> 
+									<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</span>
 								</div>
 							</label>
@@ -237,7 +238,7 @@
 							<td class="btn"  data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">分享</td>
 						</tr>
 					</table>
-					
+				</div>
 					
 					<!-- 分享弹出层页面开始 -->
 					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
@@ -253,8 +254,8 @@
 								</div>
 								<div class="modal-body" style="background:#fff;padding:20px 40px" >
 									<div class="share-modal">
-										<div><button>创建公开链接</button><span>文件会出现在您的分享主页，其他人都能查看下载</span></div>
-										<div><button>创建私密链接</button><span>只有分享的好友能看到，其他人都看不到</span></div>
+										<div><button onclick="paublicShare();">创建公开链接</button><span>文件会出现在您的分享主页，其他人都能查看下载</span></div>
+										<div><button onclick="privateShare();">创建私密链接</button><span>只有分享的好友能看到，其他人都看不到</span></div>
 									</div>
 									
 									<!-- <div class="share-modal-simi">
@@ -280,8 +281,6 @@
 					</div>
 					<!-- 分享弹出层页面结束 -->
 					
-					
-				</div>
 				<div id="mask"></div>
 
 			</div>
@@ -355,56 +354,25 @@
 		}
 	}
 
-	
+	//上传 文件响应函数
 	function upload(){
-		alert(1);
+		//alert(1);
+	}
+	
+	//创建公开分享链接
+	function paublicShare(){
+		
+	}
+	
+	//创建私密分享链接
+	function privateShare(){
+		
 	}
 	
 	//加载文件夹内内容
 	function next(selfId) {
-		window.location.href = "${ctx}/toMycenter?pId=" + selfId+"&selfId="+selfId;
-		/*$.ajax({
-			url:'${ctx}/getNextContent',
-			type:'POST',
-			data:{'selfId':selfId},
-			success:function(data){
-				
-				var str = '';
-				$("#pId").val(selfId);
-				
-				var d = data.message;
-				if(d != "toLogin"){
-					var jsonObj = d.split("@LXG");
-					var jsonObj1 = JSON.parse(jsonObj[0]);
-					var jsonObj2 = JSON.parse(jsonObj[1]);
-					if(jsonObj1.length == 0 && jsonObj2.length == 0){
-						$("#textbox").html("暂无内容");
-					}else{
-						$.each(jsonObj1,function(i,item){
-							str += '<div class="textbox-1" style="position: relative;">'
-								+'<label>'
-								+'<input type="checkbox" name="selected" />'
-								+'<span class="checkboxbg"></span>'
-								+'<div class="grzx-right-main-list">'
-								+'<span class="grzx-right-wjm">'
-								+'<img src="${ctx }/img/wenjianjia.png" />'
-								+'<a href="javascript:next('+item.self_id+');">'+item.title+'</a>'
-								+'</span>'
-								+'<span class="grzx-right-dx">--</span>'
-								+'<span class="grzx-right-time">'
-								+fromatDate(new Date(item.upd_date))
-								+'</span>'
-							+'</div>'
-							+'</label>'
-							+'</div>';
-						});
-						$("#categoryLength").val(jsonObj1.length);
-						$("#textbox").html(str);
-					}
-					
-				}
-			}
-		});*/
+		window.location.href = "${ctx}/toMycenter?pId=" 
+				+ selfId+"&selfId="+selfId;
 	}
 </script>
 </html>
