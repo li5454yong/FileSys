@@ -1,6 +1,7 @@
 package com.fs.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -78,5 +79,16 @@ public class CategoryDaoImpl implements CategoryDao {
 			list.add(category);
 		}
 		return list;
+	}
+
+	@Override
+	public void paublicShare(int id, String shareUrl) {
+		String sql = "update Category set public_share_path=?,upd_date=? where id=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, shareUrl);
+		query.setDate(1, new Date());
+		query.setInteger(2, id);
+		query.executeUpdate();
+		
 	}
 }

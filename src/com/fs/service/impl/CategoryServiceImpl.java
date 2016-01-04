@@ -48,4 +48,9 @@ public class CategoryServiceImpl implements CategoryService{
 		// TODO Auto-generated method stub
 		return dao.getParentList(seltId,userId);
 	}
+
+	@Override
+	public void paublicShare(int id, String shareUrl) {
+		dao.paublicShare(id, shareUrl);
+	}
 }

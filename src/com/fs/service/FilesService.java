@@ -14,4 +14,7 @@ public interface FilesService {
 	
 	public void save(Files file,float size,int user_id);
 	
+	//创建公开链接
+	public void paublicShare(int id,String shareUrl);
+	
 }

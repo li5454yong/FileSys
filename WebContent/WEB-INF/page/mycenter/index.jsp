@@ -10,15 +10,21 @@
 	content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
 <link rel="stylesheet" href="${ctx }/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ctx }/css/style.css" />
+
 <!--标签云js引入-->
 <script type="text/javascript" src="${ctx }/js/script.js"></script>
 <!--标签云结束-->
-<script type="text/javascript" src="${ctx }/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctx }/js/jquery-1.9.1.min.js"></script>
+
+<!-- 剪切板js -->
+<script type="text/javascript" src="${ctx }/js/jquery.zclip.min.js"></script>
+
 <script type="text/javascript" src="${ctx }/js/json2.js"></script>
 <!-- 个人中心页面js -->
 <script type="text/javascript" src="${ctx }/js/mycenter.js"></script>
 <!-- bootstrap.js -->
 <script type="text/javascript" src="${ctx }/js/bootstrap.min.js"></script>
+
 
 <style>
 	.modal-header{
@@ -182,9 +188,9 @@
 				</div>
 				<div id="textbox">
 					<c:forEach items="${categoryList }" var="item">
-						<div class="textbox-1" style="position: relative;">
-							<label> <input type="checkbox" name="selected" /> <span
-								class="checkboxbg"></span>
+						<div class="textbox-1" style="position: relative;" >
+							<label> <input type="checkbox" name="selected" fType="category" fId="${item.id }"/> 
+							<span class="checkboxbg"></span>
 								<div class="grzx-right-main-list">
 									<span class="grzx-right-wjm"> 
 									<img src="${ctx }/img/wenjianjia.png" /> 
@@ -198,8 +204,8 @@
 						</div>
 					</c:forEach>
 					<c:forEach items="${fileList }" var="item">
-						<div class="textbox-1" fileId=${item.id } style="position: relative;">
-							<label> <input type="checkbox" name="selected" /> 
+						<div class="textbox-1" style="position: relative;">
+							<label> <input type="checkbox" name="selected" ftype="file" fId="${item.id }"/> 
 							<span class="checkboxbg"></span>
 								<div class="grzx-right-main-list">
 									<span class="grzx-right-wjm"> 
@@ -223,6 +229,7 @@
 				<input type="hidden" id="categoryLength" value="${categoryLength }">
 				<input type="hidden" id="pId" value="${pId }">
 				
+				<!-- 鼠标右键菜单开始 -->
 				<div id="myMenu">
 					<table cellspace="3">
 						<tr class="xiazai">
@@ -239,7 +246,8 @@
 						</tr>
 					</table>
 				</div>
-					
+				<!-- 鼠标右键菜单结束 -->	
+				
 					<!-- 分享弹出层页面开始 -->
 					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel">
@@ -252,7 +260,7 @@
 									</button>
 									<h4 class="modal-title" id="myModalLabel">分享：文件名</h4>
 								</div>
-								<div class="modal-body" style="background:#fff;padding:20px 40px" >
+								<div class="modal-body" id="createShareUrl" style="background:#fff;padding:20px 40px" >
 									<div class="share-modal">
 										<div><button onclick="paublicShare();">创建公开链接</button><span>文件会出现在您的分享主页，其他人都能查看下载</span></div>
 										<div><button onclick="privateShare();">创建私密链接</button><span>只有分享的好友能看到，其他人都看不到</span></div>
@@ -287,8 +295,12 @@
 		</div>
 
 	</div>
+	
 </body>
 <script type="text/javascript">
+
+
+
 	//新建文件夹按钮响应函数
 	function createWJJ() {
 		var str = '<div id="adds" class="textbox-1" style="position: relative;"><label>'
@@ -358,15 +370,72 @@
 	function upload(){
 		//alert(1);
 	}
-	
 	//创建公开分享链接
 	function paublicShare(){
+		
+		var cheaked = $(".textbox-1").find("input[name=selected]");
+		var array = new Array();
+		for(var i=0;i<cheaked.length;i++){
+			var obj;
+			var c = cheaked[i];
+			isChecked = $(c).prop("checked");
+			if(isChecked){
+				obj={
+						'id':$(c).attr("fId"),
+						'type':$(c).attr("fType")
+				};
+				array.push(obj);
+			}
+		} 
+		var str = JSON.stringify(array);
+		var result = '';
+		$.ajax({
+			url:'${ctx}/files/paublicShare',
+			type:'POST',
+			data:{'share':str},
+			success:function(data){
+				result +='<div class="share-modal-simi">'
+				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
+				+'<input id="link" type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
+				+'<button id="copyBtn">复制链接和提取码</button>'
+				+'</div>';
+				$("#createShareUrl").html(result);
+			}
+		});
 		
 	}
 	
 	//创建私密分享链接
 	function privateShare(){
-		
+		var cheaked = $(".textbox-1").find("input[name=selected]");
+		var array = new Array();
+		for(var i=0;i<cheaked.length;i++){
+			var obj;
+			var c = cheaked[i];
+			isChecked = $(c).prop("checked");
+			if(isChecked){
+				obj={
+						'id':$(c).attr("fId"),
+						'type':$(c).attr("fType")
+				};
+				array.push(obj);
+			}
+		} 
+		var str = JSON.stringify(array);
+		var result = '';
+		$.ajax({
+			url:'${ctx}/files/privateShare',
+			type:'POST',
+			data:{'share':str},
+			success:function(data){
+				result +='<div class="share-modal-simi">'
+				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
+				+'<input type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
+				+'<button>复制链接和提取码</button>'
+				+'</div>';
+				$("#createShareUrl").html(result);
+			}
+		});
 	}
 	
 	//加载文件夹内内容
@@ -375,4 +444,5 @@
 				+ selfId+"&selfId="+selfId;
 	}
 </script>
+
 </html>

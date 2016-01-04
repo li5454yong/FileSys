@@ -38,4 +38,9 @@ public class FilesServiceImpl implements FilesService {
 		userDao.updateSpace(size, user_id);
 	}
 
+	@Override
+	public void paublicShare(int id, String shareUrl) {
+		dao.paublicShare(id, shareUrl);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.fs.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -43,6 +44,22 @@ public class FilesDaoImpl implements FilesDao {
 	public void save(Files file) {
 
 		sf.getCurrentSession().save(file);
+		
+	}
+
+	@Override
+	public void paublicShare(int id, String shareUrl) {
+		try{
+			String sql = "update Files set public_share_path=?,upd_date=? where id=?";
+			Query query = sf.getCurrentSession().createQuery(sql);
+			query.setString(0, shareUrl);
+			query.setDate(1, new Date());
+			query.setInteger(2, id);
+			query.executeUpdate();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 

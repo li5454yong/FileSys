@@ -14,4 +14,7 @@ public interface FilesDao {
 	public List<Files> getFileList(String sql,String p_id,int u_id);
 	
 	public void save(Files file);
+	
+	//创建公开分享
+	public void paublicShare(int id,String shareUrl);
 }

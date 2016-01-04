@@ -17,6 +17,9 @@ public interface CategoryService {
 	//获取分类（文件夹）列表
 	public List<Category> getCategoryList(String p_id,int u_id);
 	
+	//创建公开链接
+	public void paublicShare(int id,String shareUrl);
+	
 	//新增分类
 	public void save(Category category);
 	
