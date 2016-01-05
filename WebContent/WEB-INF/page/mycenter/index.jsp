@@ -186,6 +186,19 @@
 							class="grzx-right-dx">大小</span> <span class="grzx-right-time">修改日期</span>
 					</div>
 				</div>
+				<!-- 当选中文件时，变化的标题框 -->
+				<div style="position: relative;">
+					<label> <input type="checkbox" onclick="selectAll()"
+						name="controlAll" style="" id="controlAll" /> <span
+						class="checkboxbg"></span>
+					</label>
+					<div class="grzx-right-main-title1">
+						<span > 已选中1个文件/文件夹 </span> 
+						<button><img src="${ctx }/img/fenxiang-hui.png" />分享</button>
+						<button><img src="${ctx }/img/xiazai-hui.png" />下载</button>
+						<button><img src="${ctx }/img/sahcnhu-hui.png" />删除</button>
+					</div>
+				</div>
 				<div id="textbox">
 					<c:forEach items="${categoryList }" var="item">
 						<div class="textbox-1" style="position: relative;" >
