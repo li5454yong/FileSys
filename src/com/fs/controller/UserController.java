@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fs.entity.Category;
 import com.fs.entity.Files;
+import com.fs.entity.Filing;
 import com.fs.entity.User;
 import com.fs.service.CategoryService;
 import com.fs.service.FilesService;
@@ -92,12 +93,15 @@ public class UserController extends BasicController{
 			//加载的浏览导航
 			List<Category> parentList = categoryService.getParentList(selfId,user.getId());
 			
+			List<Filing> filingList = filesService.getFiling(user.getId());
+			
 			map.addAttribute("categoryLength", categoryList.size());
 			map.addAttribute("fileList", fileList);
 			map.addAttribute("categoryList", categoryList);
 			map.addAttribute("pId", pId);
 			map.addAttribute("parentList", parentList);
 			map.addAttribute("fileLength", fileList.size());
+			map.addAttribute("filingList", filingList);
 		}else{
 			return redirect("toLogin");
 		}

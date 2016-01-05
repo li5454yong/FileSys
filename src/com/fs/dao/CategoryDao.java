@@ -23,4 +23,7 @@ public interface CategoryDao{
 	
 	//新增分类
 	public void save(Category category);
+	
+	//私密  分享
+	public void privateShare(int id, String shareUrl, String pw);
 }

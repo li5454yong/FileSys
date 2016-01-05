@@ -47,7 +47,22 @@ public class FileController extends BasicController {
 	}
 	
 	@RequestMapping("privateShare")
-	public void privateShare(){
+	public @ResponseBody WebMessage privateShare(String share){
+		String shareUrl = UUIDUtil.get8str();
+		String pw = UUIDUtil.get5str();
+		List<Share> list = JSONArray.parseArray(share, Share.class);
+		for(Share s : list){
+			if("category".equals(s.getType())){
+				
+				categoryService.privateShare(s.getId(), shareUrl, pw);
+				
+			}else if("file".equals(s.getType())){
+				
+				filesService.privateShare(s.getId(), shareUrl, pw);
+				
+			}
+		}
 		
+		return saveSuccess(shareUrl+"@LXG"+pw);
 	}
 }

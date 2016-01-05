@@ -83,12 +83,21 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public void paublicShare(int id, String shareUrl) {
-		String sql = "update Category set public_share_path=?,upd_date=? where id=?";
+		String sql = "update Category set public_share_path=? where id=?";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setString(0, shareUrl);
-		query.setDate(1, new Date());
-		query.setInteger(2, id);
+		query.setInteger(1, id);
 		query.executeUpdate();
 		
+	}
+
+	@Override
+	public void privateShare(int id, String shareUrl, String pw) {
+		String sql = "update Category set private_share_path=?,distill_pwd=? where id=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, shareUrl);
+		query.setString(1, pw);
+		query.setInteger(2, id);
+		query.executeUpdate();
 	}
 }

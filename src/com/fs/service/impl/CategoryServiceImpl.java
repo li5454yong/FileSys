@@ -53,4 +53,9 @@ public class CategoryServiceImpl implements CategoryService{
 	public void paublicShare(int id, String shareUrl) {
 		dao.paublicShare(id, shareUrl);
 	}
+
+	@Override
+	public void privateShare(int id, String shareUrl, String pw) {
+		dao.privateShare(id, shareUrl,pw);
+	}
 }

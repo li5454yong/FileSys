@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
  <%@ include file="/WEB-INF/page/tag/tag.jsp" %>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-
+<html lang="en">
 	<head>
-
 		<meta charset="utf-8">
 		<title>登录</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +19,7 @@
 		<!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
+	<script type="text/javascript" src="${ctx }/js/jquery-1.9.1.min.js"></script>
 	</head>
 
 	<body>
@@ -34,7 +32,7 @@
 				<form action="" method="post">
 					<input type="text" name="username" class="username" placeholder="用户名">
 					<input type="password" name="password" class="password" placeholder="密码">
-					<button type="button" id="login" onclick="login();">登录</button>
+					<button type="button" id="loginDo" onclick="login();">登录</button>
 					
 					<div class="error"><span>+</span></div>
 				</form>
@@ -52,14 +50,6 @@
 	</body>
 <script type="text/javascript">
 
-$(function(){
-	document.onkeydown = function(e){
-	var ev = document.all ? window.event : e;
-	if(ev.keyCode==13) {
-		login();
-	}
-	}
-});
 function login(){
 	var username = $("input[name=username]").val();
 	var password = $("input[name=password]").val();
@@ -79,5 +69,15 @@ function login(){
 		}
 	});
 }
+
+$(function(){
+	document.onkeydown = function(e){
+	var ev = document.all ? window.event : e;
+	if(ev.keyCode==13) {
+		login();
+	}
+	}
+});
+
 </script>
 </html>

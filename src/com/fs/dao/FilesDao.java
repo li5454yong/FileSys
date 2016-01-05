@@ -3,6 +3,7 @@ package com.fs.dao;
 import java.util.List;
 
 import com.fs.entity.Files;
+import com.fs.entity.Filing;
 
 /**
  * @author lxg
@@ -17,4 +18,10 @@ public interface FilesDao {
 	
 	//创建公开分享
 	public void paublicShare(int id,String shareUrl);
+	
+	//创建私密分享
+	public void privateShare(int id,String shareUrl,String pw);
+	
+	//获取文件存档
+	public List<Filing> getFiling(int userId);
 }

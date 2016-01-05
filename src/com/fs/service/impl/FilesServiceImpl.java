@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fs.dao.FilesDao;
 import com.fs.dao.UserDao;
 import com.fs.entity.Files;
+import com.fs.entity.Filing;
 import com.fs.service.FilesService;
 
 /**
@@ -41,6 +42,17 @@ public class FilesServiceImpl implements FilesService {
 	@Override
 	public void paublicShare(int id, String shareUrl) {
 		dao.paublicShare(id, shareUrl);
+	}
+
+	@Override
+	public void privateShare(int id, String shareUrl, String pw) {
+		dao.privateShare(id, shareUrl,pw);
+	}
+
+	@Override
+	public List<Filing> getFiling(int userId) {
+		// TODO Auto-generated method stub
+		return dao.getFiling(userId);
 	}
 
 }
