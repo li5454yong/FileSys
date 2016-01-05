@@ -70,9 +70,11 @@ $(window).ready(function() {
 			alert("2");
 		}
 		alert($(this).attr("fileId"));
-		for (var i = 0; i < checklist.length; i++) {
+		
+		$(this).find("input [type=checkbox]").attr("checked",true);
+		/*for (var i = 0; i < checklist.length; i++) {
 			alert(checklist[i].checked == 1);
-		}
+		}*/
 	});
 });
 
