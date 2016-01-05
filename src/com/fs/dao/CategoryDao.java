@@ -18,6 +18,9 @@ public interface CategoryDao{
 	
 	public List<Category> getParentList(String seltId,int userId);
 	
+	//公开分享
+	public void paublicShare(int id,String shareUrl);
+	
 	//新增分类
 	public void save(Category category);
 }

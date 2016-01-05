@@ -21,7 +21,7 @@ function selectAll() {
 var windowwidth;
 var windowheight;
 var checkmenu;
-$(window).ready(function() {
+$(window).ready(function() { //鼠标右键菜单
 	$('#myMenu').hide();
 	$('#textbox').bind("contextmenu", function(e) {
 		windowwidth = $(window).width();
@@ -63,26 +63,24 @@ $(window).ready(function() {
 		}
 	});
 	
-	
+	/**
+	 * 为 textbox-1添加鼠标点击监听事件
+	 */
 	$(".textbox-1").mousedown(function(e){
-		var checklist = $("input[name=selected]");
 		if(e.button == 2){
-			alert("2");
-		}
-		alert($(this).attr("fileId"));
-		
-		$(this).find("input [type=checkbox]").attr("checked",true);
-		/*for (var i = 0; i < checklist.length; i++) {
-			alert(checklist[i].checked == 1);
-		}*/
+			var checked = $(this).find("input[name=selected]").prop("checked");
+			if(checked){
+				$(this).find("input[name=selected]").prop("checked",false);
+			}else{
+				$(this).find("input[name=selected]").prop("checked",true);
+			}
+		}	
 	});
 });
 
 function hideMenu(){
 	$('#myMenu').hide();
-	
 }
-
 
 function fromatDate(date){
 	var year = date.getFullYear();

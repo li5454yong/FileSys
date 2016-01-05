@@ -27,6 +27,12 @@ public class Category {
 	
 	private String title;  // 分类标题
 	
+	private String public_share_path; // 公开分享路径
+	
+	private String private_share_path; // 私密分享路径
+	
+	private String distill_pwd; //私密分享文件提取密码
+	
 	private Date init_date;  // 记录生成日期
 	
 	private Date upd_date;  // 更新日期
@@ -87,6 +93,30 @@ public class Category {
 
 	public void setUpd_date(Date upd_date) {
 		this.upd_date = upd_date;
+	}
+
+	public String getPublic_share_path() {
+		return public_share_path;
+	}
+
+	public void setPublic_share_path(String public_share_path) {
+		this.public_share_path = public_share_path;
+	}
+
+	public String getPrivate_share_path() {
+		return private_share_path;
+	}
+
+	public void setPrivate_share_path(String private_share_path) {
+		this.private_share_path = private_share_path;
+	}
+
+	public String getDistill_pwd() {
+		return distill_pwd;
+	}
+
+	public void setDistill_pwd(String distill_pwd) {
+		this.distill_pwd = distill_pwd;
 	}
 	
 	
