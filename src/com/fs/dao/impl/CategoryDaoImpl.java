@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
@@ -37,11 +38,20 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public List<Category> getCategoryList(String p_id,int u_id) {
 		try {
-			String sql = "from Category where p_id=? and u_id=?";
-			Query query = sf.getCurrentSession().createQuery(sql);
-			query.setString(0, p_id);
-			query.setInteger(1, u_id);
-			return query.list();
+			
+			if(StringUtils.isNotEmpty(p_id)){
+				String sql = "from Category where p_id=? and u_id=?";
+				Query query = sf.getCurrentSession().createQuery(sql);
+				query.setString(0, p_id);
+				query.setInteger(1, u_id);
+				return query.list();
+			}else{
+				String sql = "from Category where u_id=?";
+				Query query = sf.getCurrentSession().createQuery(sql);
+				query.setInteger(0, u_id);
+				return query.list();
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,5 +109,15 @@ public class CategoryDaoImpl implements CategoryDao {
 		query.setString(1, pw);
 		query.setInteger(2, id);
 		query.executeUpdate();
+	}
+
+	/**
+	 * 根据公开分享链接获取文件夹列表
+	 */
+	public List<Category> getPaublicShare(String publicSharePath) {
+		String sql = "from Category where public_share_path=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, publicSharePath);
+		return query.list();
 	}
 }

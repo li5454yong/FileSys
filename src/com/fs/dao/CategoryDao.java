@@ -26,4 +26,7 @@ public interface CategoryDao{
 	
 	//私密  分享
 	public void privateShare(int id, String shareUrl, String pw);
+	
+	//根据公开分享链接获取分享的文件夹
+	public List<Category> getPaublicShare(String publicSharePath);
 }

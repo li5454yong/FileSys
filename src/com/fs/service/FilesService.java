@@ -23,4 +23,6 @@ public interface FilesService {
 	
 	//获取文件存档信息
 	public List<Filing> getFiling(int userId);
+	
+	public List<Files> getPaublicShare(String publicSharePath);
 }

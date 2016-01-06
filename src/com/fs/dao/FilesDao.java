@@ -24,4 +24,6 @@ public interface FilesDao {
 	
 	//获取文件存档
 	public List<Filing> getFiling(int userId);
+	
+	public List<Files> getPaublicShare(String publicSharePath);
 }

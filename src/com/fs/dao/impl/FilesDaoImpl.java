@@ -112,4 +112,16 @@ public class FilesDaoImpl implements FilesDao {
 	
 	}
 
+	/**
+	 * 根据公开分享链接获取分享的文件
+	 */
+	public List<Files> getPaublicShare(String publicSharePath) {
+		String sql = "from Files where public_share_path=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, publicSharePath);
+		List<Files> list = query.list();
+		
+		return list;
+	}
+
 }

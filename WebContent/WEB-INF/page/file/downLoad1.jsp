@@ -41,7 +41,7 @@
 		<!--主体内容开始-->
 		<div class="down-content">
 			<div class="down-content-title">
-				<span class="down-wjm"><img src="${ctx }/img/rar.png" />文件名.rar</span>
+				<span class="down-wjm"><img src="${ctx }/${file.icon_path}" />${file.filename }</span>
 				<span class="down-sc">
 					<button><img src="${ctx }/img/shoucang.png" /> 收藏</button>
 					<button>举报</button>
@@ -57,9 +57,9 @@
 				<div style="clear: both;"></div>
 			</div>
 			<div class="down-content-main">
-				<img src="${ctx }/img/rar.png" />
-				<p>文件大小：300B</p>
-				<button>下载(300B)</button>
+				<img src="${ctx }/${file.icon_path}" />
+				<p>文件大小：${file.filesize }</p>
+				<button>下载(${file.filesize })</button>
 			</div>
 			<p class="share-time">分享时间：2015-12-10</p>
 			<div class="down-pinglun">

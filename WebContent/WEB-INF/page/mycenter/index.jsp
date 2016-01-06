@@ -63,28 +63,6 @@
 							${item.year } 年 ${item.month }月<span>(${item.num })</span>
 						</div>
 					</c:forEach>
-						<!-- 
-						<div>
-							2015年11月<span>(10)</span>
-						</div>
-						<div>
-							2015年10月<span>(10)</span>
-						</div>
-						<div>
-							2015年09月<span>(10)</span>
-						</div>
-						<div>
-							2015年08月<span>(10)</span>
-						</div>
-						<div>
-							2015年07月<span>(10)</span>
-						</div>
-						<div>
-							2015年06月<span>(10)</span>
-						</div>
-						<div>
-							2015年05月<span>(10)</span>
-						</div> -->
 					</div>
 				</div>
 				<!--文件分类   标签云-->
@@ -92,24 +70,9 @@
 					<div class="grzx-left-main-1-head">文件分类</div>
 					<div class="grzx-left-main-1-main">
 						<div id="tagbox">
-							<a href="#">美女</a> <a class="red" href="#">写真</a> <a href="#">贴图</a>
-							<a href="#">灌水</a> <a class="blue" href="#">大片</a> <a href="#">小说</a>
-							<a class="red" href="#">欧美</a> <a class="yellow" href="#">日韩</a>
-							<a href="#">诱人</a> <a class="red" href="#">搞笑</a> <a href="#">性感</a>
-							<a class="blue" href="#">壁纸</a> <a class="blue" href="#">泳装</a> <a
-								class="red" href="#">言情</a> <a class="yellow" href="#">浪漫</a> <a
-								class="yellow" href="#">耽美</a> <a class="blue" href="#">爆笑</a> <a
-								class="yellow" href="#">美眉</a> <a class="blue" href="#">同人</a> <a
-								class="blue" href="#">武侠</a> <a class="red" href="#">魔幻</a> <a
-								href="#">教案</a> <a href="#">论文</a> <a class="yellow" href="#">妩媚</a>
-							<a href="#">诱惑</a> <a class="blue" href="#">科幻</a> <a class="red"
-								href="#">恐怖</a> <a class="red" href="#">性感</a> <a class="blue"
-								href="#">TXT下载</a> <a href="#">音乐</a> <a class="blue" href="#">游戏</a>
-							<a class="blue" href="#">CG资源</a> <a href="#">YunFile</a> <a
-								href="#">课件</a> <a href="#">幽默</a> <a href="#">私人照</a> <a
-								href="#">名校</a> <a class="red" href="#">赚钱</a> <a class="yellow"
-								href="#">千脑</a> <a class="yellow" href="#">清純</a> <a
-								class="yellow" href="#">云电脑</a>
+							<c:forEach items="${tagCloud}" var="item">
+								<a href="javascript:next('${item.self_id }');">${item.title }</a>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -179,7 +142,7 @@
 			</c:forEach>
 			</div>
 			<div class="grzx-right-main">
-				<div style="position: relative;">
+				<div style="position: relative;" id="titleBar">
 					<label> <input type="checkbox" onclick="selectAll()"
 						name="controlAll" style="" id="controlAll" /> <span
 						class="checkboxbg"></span>
@@ -194,7 +157,7 @@
 					<label>
 					</label>
 					<div class="grzx-right-main-title1">
-						<span > 已选中<span id="selectedNum"></span>个文件/文件夹 </span> 
+						<span >&nbsp;&nbsp;&nbsp;&nbsp; 已选中<span id="selectedNum"></span>个文件/文件夹 </span> 
 						<button data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">
 						<img src="${ctx }/img/fenxiang-hui.png" />分享</button>
 						<button><img src="${ctx }/img/xiazai-hui.png" />下载</button>
