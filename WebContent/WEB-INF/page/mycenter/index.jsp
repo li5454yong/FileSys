@@ -58,9 +58,12 @@
 				<div class="grzx-left-main-1">
 					<div class="grzx-left-main-1-head">文件存档</div>
 					<div class="grzx-left-main-1-main">
+					<c:forEach items="${filingList }" var="item">
 						<div>
-							2015年12月<span>(10)</span>
+							${item.year } 年 ${item.month }月<span>(${item.num })</span>
 						</div>
+					</c:forEach>
+						<!-- 
 						<div>
 							2015年11月<span>(10)</span>
 						</div>
@@ -81,7 +84,7 @@
 						</div>
 						<div>
 							2015年05月<span>(10)</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!--文件分类   标签云-->
@@ -187,14 +190,13 @@
 					</div>
 				</div>
 				<!-- 当选中文件时，变化的标题框 -->
-				<div style="position: relative;">
-					<label> <input type="checkbox" onclick="selectAll()"
-						name="controlAll" style="" id="controlAll" /> <span
-						class="checkboxbg"></span>
+				<div style="position: relative; display: none;" id="toolBar">
+					<label>
 					</label>
 					<div class="grzx-right-main-title1">
-						<span > 已选中1个文件/文件夹 </span> 
-						<button><img src="${ctx }/img/fenxiang-hui.png" />分享</button>
+						<span > 已选中<span id="selectedNum"></span>个文件/文件夹 </span> 
+						<button data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">
+						<img src="${ctx }/img/fenxiang-hui.png" />分享</button>
 						<button><img src="${ctx }/img/xiazai-hui.png" />下载</button>
 						<button><img src="${ctx }/img/sahcnhu-hui.png" />删除</button>
 					</div>
@@ -410,7 +412,7 @@
 				result +='<div class="share-modal-simi">'
 				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
 				+'<input id="link" type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
-				+'<button id="copyBtn">复制链接和提取码</button>'
+				+'<button id="copyBtn">复制链接</button>'
 				+'</div>';
 				$("#createShareUrl").html(result);
 			}
@@ -443,8 +445,8 @@
 			success:function(data){
 				result +='<div class="share-modal-simi">'
 				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
-				+'<input type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
-				+'<button>复制链接和提取码</button>'
+				+'<input id="link" type="text" value="http://localhost:8080${ctx}/'+(data.message).split('@LXG')[0]+'  提取码：'+(data.message).split('@LXG')[1]+'"/><br>'
+				+'<button id="copyBtn">复制链接和提取码</button>'
 				+'</div>';
 				$("#createShareUrl").html(result);
 			}
@@ -457,5 +459,4 @@
 				+ selfId+"&selfId="+selfId;
 	}
 </script>
-
 </html>

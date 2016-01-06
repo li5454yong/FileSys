@@ -3,6 +3,7 @@ package com.fs.service;
 import java.util.List;
 
 import com.fs.entity.Files;
+import com.fs.entity.Filing;
 
 /**
  * @author lxg
@@ -17,4 +18,9 @@ public interface FilesService {
 	//创建公开链接
 	public void paublicShare(int id,String shareUrl);
 	
+	//创建私密链接
+	public void privateShare(int id,String shareUrl, String pw);
+	
+	//获取文件存档信息
+	public List<Filing> getFiling(int userId);
 }

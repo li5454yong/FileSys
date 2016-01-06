@@ -20,6 +20,10 @@ public interface CategoryService {
 	//创建公开链接
 	public void paublicShare(int id,String shareUrl);
 	
+	
+	//创建私密链接
+	public void privateShare(int id,String shareUrl,String pw);
+		
 	//新增分类
 	public void save(Category category);
 	

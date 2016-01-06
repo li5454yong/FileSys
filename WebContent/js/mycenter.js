@@ -67,6 +67,7 @@ $(window).ready(function() { //鼠标右键菜单
 	 * 为 textbox-1添加鼠标点击监听事件
 	 */
 	$(".textbox-1").mousedown(function(e){
+		
 		if(e.button == 2){
 			var checked = $(this).find("input[name=selected]").prop("checked");
 			if(checked){
@@ -74,9 +75,34 @@ $(window).ready(function() { //鼠标右键菜单
 			}else{
 				$(this).find("input[name=selected]").prop("checked",true);
 			}
-		}	
+
+		}
+		
+	});
+	
+	/**
+	 * 监听选择框选中事件，根据选中数量改变工具栏
+	 */
+	$("input[name=selected]").change(function(e){
+		var list = $(".textbox-1").find("input[name=selected]");
+		var length = 0;
+		for(var i=0;i<list.length;i++){
+			var c = list[i];
+			isChecked = $(c).prop("checked");
+			if(isChecked){
+				length++;
+			}
+		}
+		if(length>0){
+			$("#toolBar").show(2);
+			$("#selectedNum").text(length);
+		}else{
+			$("#toolBar").hide(2);
+		}
 	});
 });
+
+
 
 function hideMenu(){
 	$('#myMenu').hide();
