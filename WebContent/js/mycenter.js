@@ -96,8 +96,10 @@ $(window).ready(function() { //鼠标右键菜单
 		if(length>0){
 			$("#toolBar").show(2);
 			$("#selectedNum").text(length);
+			$("#titleBar").hide(2);
 		}else{
 			$("#toolBar").hide(2);
+			$("#titleBar").show(2);
 		}
 	});
 });

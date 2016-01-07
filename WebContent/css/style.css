@@ -121,7 +121,7 @@ a {
 	position: absolute;
 	padding: 3px 6px;
 	font-family: Microsoft YaHei;
-	color: #444;
+	/*color: #444;*/
 	TOP: 0px;
 	font-weight: bold;
 	text-decoration: none;
@@ -264,8 +264,8 @@ a {
 }
 .grzx-right-main-title1 {
 	background: #3281DE !important;
-	/* border-top-right-radius: 5px;
-	border-top-left-radius: 5px; */
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
 	padding: 10px 7px 0px 5px;
 	border: 1px solid #96C0F2;
 	border-bottom: none;
@@ -274,7 +274,7 @@ a {
 	height: 50px;
 	/* line-height: 45px; */
 	display: inline-block;
-	width: 918px;
+	width: 919px;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -852,6 +852,7 @@ label {
 .down-content-title{
 	padding: 10px;
 	position: relative;
+	height:50px
 }
 .down-wjm{
 	font-weight: bold;
@@ -1012,7 +1013,7 @@ label {
 }
 .share-modal-simi input{
 	width:450px;
-	height:30px;
+	height:40px;
 	border-radius:5px;
 	padding:10px;
 	border:1px solid #A9A9A9;
@@ -1063,7 +1064,7 @@ label {
 
 
 /* 提取加密文件css结束 */
-
+@import url(${ctx }/css/1.css)
 
 
 

@@ -95,6 +95,8 @@ public class UserController extends BasicController{
 			
 			List<Filing> filingList = filesService.getFiling(user.getId());
 			
+			List<Category> tagCloud = categoryService.getCategoryList(null,user.getId());
+			
 			map.addAttribute("categoryLength", categoryList.size());
 			map.addAttribute("fileList", fileList);
 			map.addAttribute("categoryList", categoryList);
@@ -102,6 +104,7 @@ public class UserController extends BasicController{
 			map.addAttribute("parentList", parentList);
 			map.addAttribute("fileLength", fileList.size());
 			map.addAttribute("filingList", filingList);
+			map.addAttribute("tagCloud", tagCloud);
 		}else{
 			return redirect("toLogin");
 		}

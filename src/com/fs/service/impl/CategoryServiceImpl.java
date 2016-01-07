@@ -45,7 +45,6 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public List<Category> getParentList(String seltId,int userId) {
-		// TODO Auto-generated method stub
 		return dao.getParentList(seltId,userId);
 	}
 
@@ -57,5 +56,11 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void privateShare(int id, String shareUrl, String pw) {
 		dao.privateShare(id, shareUrl,pw);
+	}
+
+	@Override
+	public List<Category> getPaublicShare(String publicSharePath) {
+		
+		return dao.getPaublicShare(publicSharePath);
 	}
 }

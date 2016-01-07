@@ -29,4 +29,6 @@ public interface CategoryService {
 	
 	//获取所有父类
 	public List<Category> getParentList(String seltId,int userId);
+	
+	public List<Category> getPaublicShare(String publicSharePath);
 }

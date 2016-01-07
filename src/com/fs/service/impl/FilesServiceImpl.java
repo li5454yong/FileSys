@@ -55,4 +55,10 @@ public class FilesServiceImpl implements FilesService {
 		return dao.getFiling(userId);
 	}
 
+	@Override
+	public List<Files> getPaublicShare(String publicSharePath) {
+		
+		return dao.getPaublicShare(publicSharePath);
+	}
+
 }

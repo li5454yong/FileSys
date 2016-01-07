@@ -19,6 +19,18 @@
 			body{
 				background: #EEF8FE;
 			}
+			.grzx-right-main{
+				margin:20px;
+			}
+			.grzx-right-main-title{
+				width:938px;
+			}
+			.grzx-right-main-list{
+				width:938px;
+			}
+			.share-time{
+				margin-right:20px
+			}
 		</style>
 	</head>
 
@@ -41,11 +53,12 @@
 		<!--主体内容开始-->
 		<div class="down-content">
 			<div class="down-content-title">
-				<span class="down-wjm"><img src="${ctx }/img/rar.png" />文件名.rar</span>
+				<%-- <span class="down-wjm"><img src="${ctx }/img/rar.png" />文件名.rar</span> --%>
 				<span class="down-sc">
 					<button><img src="${ctx }/img/shoucang.png" /> 收藏</button>
 					<button>举报</button>
 				</span>
+				<div style="clear:both"></div>
 			</div>
 			<div class="down-content-sub-title">
 				<ul>
@@ -56,10 +69,51 @@
 				</ul>
 				<div style="clear: both;"></div>
 			</div>
-			<div class="down-content-main">
-				<img src="${ctx }/img/rar.png" />
-				<p>文件大小：300B</p>
-				<button>下载(300B)</button>
+			<div class="grzx-right-main" >
+				<div style="position: relative;" id="titleBar">
+					<label> <input type="checkbox" onclick="selectAll()"
+						name="controlAll" style="" id="controlAll" /> <span
+						class="checkboxbg"></span>
+					</label>
+					<div class="grzx-right-main-title">
+						<span class="grzx-right-wjm"> 文件名 </span> <span
+							class="grzx-right-dx">大小</span> <span class="grzx-right-time">修改日期</span>
+					</div>
+				</div>
+				<div id="textbox" >
+					<c:forEach items="${categoryList }" var="item">
+						<div class="textbox-1" style="position: relative;" >
+							<label> <input type="checkbox" name="selected" fType="category" fId="${item.id }"/> 
+							<span class="checkboxbg"></span>
+								<div class="grzx-right-main-list">
+									<span class="grzx-right-wjm"> 
+									<img src="${ctx }/img/wenjianjia.png" /> 
+									<a href="javascript:next('${item.self_id }');">${item.title }</a>
+									</span> <span class="grzx-right-dx">--</span> 
+									<span class="grzx-right-time"> 
+										<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+									</span>
+								</div>
+							</label>
+						</div>
+					</c:forEach>
+					<c:forEach items="${fileList }" var="item">
+						<div class="textbox-1" style="position: relative;">
+							<label> <input type="checkbox" name="selected" ftype="file" fId="${item.id }"/> 
+							<span class="checkboxbg"></span>
+								<div class="grzx-right-main-list">
+									<span class="grzx-right-wjm"> 
+									<img src="${ctx }/${item.icon_path}" />${item.filename }
+									</span> 
+									<span class="grzx-right-dx">${item.filesize }&nbsp;</span> 
+									<span class="grzx-right-time"> 
+									<fmt:formatDate value="${item.upd_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+									</span>
+								</div>
+							</label>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 			<p class="share-time">分享时间：2015-12-10</p>
 			<div class="down-pinglun">
