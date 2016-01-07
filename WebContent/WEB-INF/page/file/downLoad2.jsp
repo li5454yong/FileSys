@@ -19,6 +19,18 @@
 			body{
 				background: #EEF8FE;
 			}
+			.grzx-right-main{
+				margin:20px;
+			}
+			.grzx-right-main-title{
+				width:938px;
+			}
+			.grzx-right-main-list{
+				width:938px;
+			}
+			.share-time{
+				margin-right:20px
+			}
 		</style>
 	</head>
 
@@ -46,6 +58,7 @@
 					<button><img src="${ctx }/img/shoucang.png" /> 收藏</button>
 					<button>举报</button>
 				</span>
+				<div style="clear:both"></div>
 			</div>
 			<div class="down-content-sub-title">
 				<ul>
@@ -56,7 +69,7 @@
 				</ul>
 				<div style="clear: both;"></div>
 			</div>
-			<div class="grzx-right-main">
+			<div class="grzx-right-main" >
 				<div style="position: relative;" id="titleBar">
 					<label> <input type="checkbox" onclick="selectAll()"
 						name="controlAll" style="" id="controlAll" /> <span
@@ -67,7 +80,7 @@
 							class="grzx-right-dx">大小</span> <span class="grzx-right-time">修改日期</span>
 					</div>
 				</div>
-				<div id="textbox">
+				<div id="textbox" >
 					<c:forEach items="${categoryList }" var="item">
 						<div class="textbox-1" style="position: relative;" >
 							<label> <input type="checkbox" name="selected" fType="category" fId="${item.id }"/> 

@@ -121,7 +121,7 @@ a {
 	position: absolute;
 	padding: 3px 6px;
 	font-family: Microsoft YaHei;
-	color: #444;
+	/*color: #444;*/
 	TOP: 0px;
 	font-weight: bold;
 	text-decoration: none;
@@ -852,6 +852,7 @@ label {
 .down-content-title{
 	padding: 10px;
 	position: relative;
+	height:50px
 }
 .down-wjm{
 	font-weight: bold;
@@ -1012,7 +1013,7 @@ label {
 }
 .share-modal-simi input{
 	width:450px;
-	height:30px;
+	height:40px;
 	border-radius:5px;
 	padding:10px;
 	border:1px solid #A9A9A9;
@@ -1063,7 +1064,7 @@ label {
 
 
 /* 提取加密文件css结束 */
-
+@import url(${ctx }/css/1.css)
 
 
 

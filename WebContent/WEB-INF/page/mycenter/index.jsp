@@ -33,6 +33,25 @@
 		color:#fff;
 		border-top-right-radius:5px;
 	}
+	/* a:nth-child(2n+1){
+		color:#f00;
+	} */
+	.a-color:nth-child(2n+1){
+		color:#F64949
+	}
+	.a-color:nth-child(3n+1){
+		color:#96C0F2;
+	}
+	.a-color:nth-child(4n+1){
+		color:#A21039;
+	}
+	.a-color:nth-child(5n+1){
+		color:#37972B
+	}
+	.a-color:nth-child(6n+1){
+		color:#3281DE;
+	}
+	
 </style>
 
 </head>
@@ -71,7 +90,7 @@
 					<div class="grzx-left-main-1-main">
 						<div id="tagbox">
 							<c:forEach items="${tagCloud}" var="item">
-								<a href="javascript:next('${item.self_id }');">${item.title }</a>
+								<a class="a-color" href="javascript:next('${item.self_id }');">${item.title }</a>
 							</c:forEach>
 						</div>
 					</div>
@@ -374,7 +393,7 @@
 			success:function(data){
 				result +='<div class="share-modal-simi">'
 				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
-				+'<input id="link" type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
+				+'<input id="link"  type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
 				+'<button id="copyBtn">复制链接</button>'
 				+'</div>';
 				$("#createShareUrl").html(result);
