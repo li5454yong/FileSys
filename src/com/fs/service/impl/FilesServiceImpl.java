@@ -61,4 +61,10 @@ public class FilesServiceImpl implements FilesService {
 		return dao.getPaublicShare(publicSharePath);
 	}
 
+	@Override
+	public Files get(int id) {
+		
+		return dao.get(id);
+	}
+
 }

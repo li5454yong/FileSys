@@ -11,6 +11,7 @@ import com.fs.entity.Filing;
  * 2015年12月13日下午5:46:09
  */
 public interface FilesService {
+	
 	public List<Files> getFileList(String p_id,int u_id);
 	
 	public void save(Files file,float size,int user_id);
@@ -25,4 +26,7 @@ public interface FilesService {
 	public List<Filing> getFiling(int userId);
 	
 	public List<Files> getPaublicShare(String publicSharePath);
+	
+	//根据id获取文件
+	public Files get(int id);
 }

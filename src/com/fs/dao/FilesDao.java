@@ -26,4 +26,7 @@ public interface FilesDao {
 	public List<Filing> getFiling(int userId);
 	
 	public List<Files> getPaublicShare(String publicSharePath);
+	
+	//根据id获取文件
+	public Files get(int id);
 }

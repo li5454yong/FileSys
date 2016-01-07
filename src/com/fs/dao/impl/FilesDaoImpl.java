@@ -124,4 +124,13 @@ public class FilesDaoImpl implements FilesDao {
 		return list;
 	}
 
+	/**
+	 * 根据id获取文件
+	 * @param id
+	 * @return
+	 */
+	public Files get(int id){
+		Files file = (Files) sf.getCurrentSession().get(Files.class, id);
+		return file;
+	}
 }
