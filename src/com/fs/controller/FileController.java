@@ -1,19 +1,17 @@
 package com.fs.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import javassist.expr.NewArray;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
@@ -23,6 +21,7 @@ import com.fs.entity.Share;
 import com.fs.service.CategoryService;
 import com.fs.service.FilesService;
 import com.fs.util.CreateHtmlUtil;
+import com.fs.util.HttpUtil;
 import com.fs.util.UUIDUtil;
 
 /**
@@ -51,6 +50,7 @@ public class FileController extends BasicController {
 		
 		List<Files> fileList = new ArrayList<Files>();
 		List<Category> categoryList = new ArrayList<Category>();
+		Map<String,String> param = new HashMap<String, String>();
 		
 		for(Share s : list){
 			if("category".equals(s.getType())){
@@ -68,10 +68,14 @@ public class FileController extends BasicController {
 		if(fileList.size()==0 && categoryList.size()==0){
 			
 		}else if(fileList.size()==1 && categoryList.size() == 0){
+			String htmlName = UUIDUtil.get8str()+".html";
 			StringBuilder sb = new StringBuilder(CreateHtmlUtil.getPath()+"publicShare/");
-			sb.append(UUIDUtil.get8str()+".html");
-			//生成静态
+			sb.append(htmlName);
+			//生成静态页面
 			CreateHtmlUtil.createHtmlForFile(fileList.get(0), request.getServletContext(), sb.toString());
+			
+			param.put("url", "http://localhost:8080/FileSys/publicShare/"+htmlName);
+			
 		}else{
 			
 		}
