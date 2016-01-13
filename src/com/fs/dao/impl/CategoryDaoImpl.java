@@ -120,4 +120,14 @@ public class CategoryDaoImpl implements CategoryDao {
 		query.setString(0, publicSharePath);
 		return query.list();
 	}
+
+	/**
+	 * 根据id获取文件夹
+	 */
+	public Category get(int id) {
+		
+		Category category = (Category)sf.getCurrentSession().get(Category.class, id);
+		
+		return category;
+	}
 }

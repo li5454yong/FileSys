@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fs.entity.Category;
+import com.fs.entity.Files;
 
 /**
  * @author lxg
@@ -29,4 +30,7 @@ public interface CategoryDao{
 	
 	//根据公开分享链接获取分享的文件夹
 	public List<Category> getPaublicShare(String publicSharePath);
+	
+	//根据id获取文件
+	public Category get(int id);
 }

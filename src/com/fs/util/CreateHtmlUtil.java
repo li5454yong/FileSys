@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 
 import org.junit.Test;
 
+import com.fs.entity.Category;
 import com.fs.entity.Files;
 
 import freemarker.template.Configuration;
@@ -33,7 +34,7 @@ public class CreateHtmlUtil {
 	 * @param htmlPath
 	 */
 	@SuppressWarnings("deprecation")
-	public static void createHtmlForList(List<Object> list, ServletContext context,String htmlPath) {
+	public static void createHtmlForList(List<Files> fileList,List<Category> categoryList, ServletContext context,String htmlPath, String template) {
 		try {
 			// 开始设置Freemarker
 			Configuration cfg = new Configuration();
@@ -43,13 +44,14 @@ public class CreateHtmlUtil {
 			cfg.setServletContextForTemplateLoading(context, "/");
 
 			// 取得模板文件
-			Template t = cfg.getTemplate("WEB-INF/template/Share.ftl");
+			Template t = cfg.getTemplate("WEB-INF/template/"+template);
 			// 设置响应编码
 
 			// 将需要在客户端浏览器中显示的业务数据放在一个map中，传递给FreeMarker
 			Map<String, Object> root = new HashMap<String, Object>();
-			root.put("file", list);
-
+			root.put("fileList", fileList);
+			root.put("categoryList", categoryList);
+			
 			File htmlFile = new File(htmlPath);
 			// 判断路径是否存在，不存在则创建相应路径
 			if (!htmlFile.getParentFile().exists()) {
@@ -69,7 +71,7 @@ public class CreateHtmlUtil {
 		}
 	}
 	
-	public static void createHtmlForFile(Files file, ServletContext context,String htmlPath) {
+	public static void createHtmlForFile(Files file, ServletContext context,String htmlPath,String template) {
 		try {
 			// 开始设置Freemarker
 			Configuration cfg = new Configuration();
@@ -79,7 +81,7 @@ public class CreateHtmlUtil {
 			cfg.setServletContextForTemplateLoading(context, "/");
 
 			// 取得模板文件
-			Template t = cfg.getTemplate("WEB-INF/template/publicShareFile.ftl");
+			Template t = cfg.getTemplate("WEB-INF/template/"+template);
 			// 设置响应编码
 
 			// 将需要在客户端浏览器中显示的业务数据放在一个map中，传递给FreeMarker

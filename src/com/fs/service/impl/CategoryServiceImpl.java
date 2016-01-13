@@ -63,4 +63,10 @@ public class CategoryServiceImpl implements CategoryService{
 		
 		return dao.getPaublicShare(publicSharePath);
 	}
+
+	@Override
+	public Category get(int id) {
+		
+		return dao.get(id);
+	}
 }

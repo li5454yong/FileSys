@@ -17,13 +17,15 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class DwzUtil {
 	
-	@Test
-	public void getDwz(){
-		Map<String,String> param = new HashMap<String, String>();
-		param.put("url", "http://localhost:8080/FileSys/publicShare/a.html");
+	/**
+	 * 根据出入的url，调用百度短网址生成API，返回生成的短网址
+	 * @param param
+	 * @return
+	 */
+	public static String getDwz(Map<String,String> param){
+		
 		String jsonStr = HttpUtil.Post("http://dwz.cn/create.php", param);
 		JSONObject jsonObject = JSON.parseObject(jsonStr);
-		System.out.println(jsonStr);
-		//return "";
+		return jsonObject.getString("tinyurl");
 	}
 }

@@ -31,4 +31,6 @@ public interface CategoryService {
 	public List<Category> getParentList(String seltId,int userId);
 	
 	public List<Category> getPaublicShare(String publicSharePath);
+	
+	public Category get(int id);
 }

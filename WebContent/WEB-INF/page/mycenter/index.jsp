@@ -393,7 +393,7 @@
 			success:function(data){
 				result +='<div class="share-modal-simi">'
 				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
-				+'<input id="link"  type="text" value="http://localhost:8080${ctx}/'+data.message+'"/><br>'
+				+'<input id="link"  type="text" value="'+data.message+'"/><br>'
 				+'<button id="copyBtn">复制链接</button>'
 				+'</div>';
 				$("#createShareUrl").html(result);
@@ -427,7 +427,7 @@
 			success:function(data){
 				result +='<div class="share-modal-simi">'
 				+'<p>成功生成分享链接，复制以下链接发给QQ、飞信好友</p>'
-				+'<input id="link" type="text" value="http://localhost:8080${ctx}/'+(data.message).split('@LXG')[0]+'  提取码：'+(data.message).split('@LXG')[1]+'"/><br>'
+				+'<input id="link" type="text" value="'+(data.message).split('@LXG')[0]+'  提取码：'+(data.message).split('@LXG')[1]+'"/><br>'
 				+'<button id="copyBtn">复制链接和提取码</button>'
 				+'</div>';
 				$("#createShareUrl").html(result);
