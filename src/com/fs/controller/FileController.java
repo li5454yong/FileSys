@@ -1,5 +1,9 @@
 package com.fs.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +12,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +31,7 @@ import com.fs.service.FilesService;
 import com.fs.service.ShareService;
 import com.fs.util.CreateHtmlUtil;
 import com.fs.util.DwzUtil;
+import com.fs.util.FileUtil;
 import com.fs.util.UUIDUtil;
 
 /**
@@ -212,4 +218,47 @@ public class FileController extends BasicController {
 		
 		return saveSuccess(flag);
 	}
+
+	/**
+	 * 文件下载
+	 * @param share
+	 * @throws IOException 
+	 */
+	@RequestMapping("download")
+	public void downLoad(String share,HttpServletResponse response) throws IOException{
+		OutputStream o = response.getOutputStream();
+		byte b[] = new byte[1024];
+		
+		List<ShareDate> list = JSONArray.parseArray(share, ShareDate.class); //获取页面传递过来的要下载的文件信息
+		List<Files> fileList = new ArrayList<Files>(); 
+		List<Category> categoryList = new ArrayList<Category>();
+		for(ShareDate s : list){
+			if("category".equals(s.getType())){
+				
+			}else if("file".equals(s.getType())){
+				Files file = filesService.get(s.getId());
+				fileList.add(file);
+			}
+			
+			if(fileList.size()==1 && categoryList.size() == 0){
+				Files f = fileList.get(0);
+				String name =new String(f.getFilename().getBytes(), "iso-8859-1");
+				File fileLoad = new File(f.getFilepath());
+				response.setHeader("Content-disposition", "attachment;filename="
+						+ name);
+				// set the MIME type.
+				response.setContentType(FileUtil.getContentType(f.getFiletype()));
+				long fileLength = fileLoad.length();
+				String length = String.valueOf(fileLength);
+				response.setHeader("Content_Length", length);
+				// download the file.
+				FileInputStream in = new FileInputStream(fileLoad);
+				int n = 0;
+				while ((n = in.read(b)) != -1) {
+					o.write(b, 0, n);
+				}
+			}
+		}
+	}
+
 }

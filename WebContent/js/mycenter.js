@@ -108,6 +108,7 @@ $(window).ready(function() { //鼠标右键菜单
 
 function hideMenu(){
 	$('#myMenu').hide();
+	
 }
 
 function fromatDate(date){

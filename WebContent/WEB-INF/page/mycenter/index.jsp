@@ -179,7 +179,7 @@
 						<span >&nbsp;&nbsp;&nbsp;&nbsp; 已选中<span id="selectedNum"></span>个文件/文件夹 </span> 
 						<button data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">
 						<img src="${ctx }/img/fenxiang-hui.png" />分享</button>
-						<button><img src="${ctx }/img/xiazai-hui.png" />下载</button>
+						<button onclick="downLoad();"><img src="${ctx }/img/xiazai-hui.png" />下载</button>
 						<button><img src="${ctx }/img/sahcnhu-hui.png" />删除</button>
 					</div>
 				</div>
@@ -255,7 +255,7 @@
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="myModalLabel">分享：文件名</h4>
+									<h4 class="modal-title" id="myModalLabel">分享</h4>
 								</div>
 								<div class="modal-body" id="createShareUrl" style="background:#fff;padding:20px 40px" >
 									<div class="share-modal">
@@ -433,6 +433,25 @@
 				$("#createShareUrl").html(result);
 			}
 		});
+	}
+	
+	function downLoad(){
+		var cheaked = $(".textbox-1").find("input[name=selected]");
+		var array = new Array();
+		for(var i=0;i<cheaked.length;i++){
+			var obj;
+			var c = cheaked[i];
+			isChecked = $(c).prop("checked");
+			if(isChecked){
+				obj={
+						'id':$(c).attr("fId"),
+						'type':$(c).attr("fType")
+				};
+				array.push(obj);
+			}
+		} 
+		var str = JSON.stringify(array);
+		location.href = '${ctx}/files/download?share='+str
 	}
 	
 	//加载文件夹内内容
