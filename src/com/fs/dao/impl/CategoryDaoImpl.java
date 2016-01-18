@@ -64,7 +64,9 @@ public class CategoryDaoImpl implements CategoryDao {
 		sf.getCurrentSession().save(category);
 	}
 
-	@Override
+	/**
+	 * 根据传入的分类自身id、用户id获取该分类所有的父类
+	 */
 	public List<Category> getParentList(String seltId,int userId) {
 		List<Category> list = new ArrayList<Category>();
 		String sql = "SELECT T2.self_id, T2.title,T2.p_id FROM "

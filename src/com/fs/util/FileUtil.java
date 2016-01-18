@@ -75,6 +75,11 @@ public class FileUtil {
 		return path;
 	}
 	
+	/**
+	 * 获取文件下载时设置的类型
+	 * @param type
+	 * @return
+	 */
 	public static String getContentType(String type){
 		String contentType = "";
 		switch (type) {

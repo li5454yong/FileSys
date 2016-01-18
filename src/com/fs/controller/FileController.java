@@ -32,6 +32,7 @@ import com.fs.service.ShareService;
 import com.fs.util.CreateHtmlUtil;
 import com.fs.util.DwzUtil;
 import com.fs.util.FileUtil;
+import com.fs.util.PackFilesUtil;
 import com.fs.util.UUIDUtil;
 
 /**
@@ -222,41 +223,86 @@ public class FileController extends BasicController {
 	/**
 	 * 文件下载
 	 * @param share
-	 * @throws IOException 
+	 * @throws Exception 
 	 */
 	@RequestMapping("download")
-	public void downLoad(String share,HttpServletResponse response) throws IOException{
+	public void downLoad(String share,HttpServletResponse response) throws Exception{
+		
+		User user = getAuthUser();
+		
 		OutputStream o = response.getOutputStream();
 		byte b[] = new byte[1024];
 		
 		List<ShareDate> list = JSONArray.parseArray(share, ShareDate.class); //获取页面传递过来的要下载的文件信息
 		List<Files> fileList = new ArrayList<Files>(); 
 		List<Category> categoryList = new ArrayList<Category>();
+		List<List<Category>> l = new ArrayList<List<Category>>();
 		for(ShareDate s : list){
 			if("category".equals(s.getType())){
 				
+				Category category = categoryService.get(s.getId());
+				categoryList.add(category);
+				List<Category> parentList = categoryService.getParentList(category.getSelf_id(),user.getId());
+				l.add(parentList);
 			}else if("file".equals(s.getType())){
 				Files file = filesService.get(s.getId());
 				fileList.add(file);
 			}
+		}
+		
+		if(fileList.size()==1 && categoryList.size() == 0){ //单个文件下载
+			Files f = fileList.get(0);
+			String name =new String(f.getFilename().getBytes(), "iso-8859-1");
 			
-			if(fileList.size()==1 && categoryList.size() == 0){
-				Files f = fileList.get(0);
-				String name =new String(f.getFilename().getBytes(), "iso-8859-1");
-				File fileLoad = new File(f.getFilepath());
-				response.setHeader("Content-disposition", "attachment;filename="
-						+ name);
-				// set the MIME type.
-				response.setContentType(FileUtil.getContentType(f.getFiletype()));
-				long fileLength = fileLoad.length();
-				String length = String.valueOf(fileLength);
-				response.setHeader("Content_Length", length);
-				// download the file.
-				FileInputStream in = new FileInputStream(fileLoad);
-				int n = 0;
-				while ((n = in.read(b)) != -1) {
-					o.write(b, 0, n);
+			File fileLoad = new File(f.getFilepath());
+			response.setHeader("Content-disposition", "attachment;filename="+ name);
+			
+			response.setContentType(FileUtil.getContentType(f.getFiletype()));
+			long fileLength = fileLoad.length();
+			String length = String.valueOf(fileLength);
+			response.setHeader("Content_Length", length);
+			// download the file.
+			FileInputStream in = new FileInputStream(fileLoad);
+			int n = 0;
+			while ((n = in.read(b)) != -1) {
+				o.write(b, 0, n);
+			}
+		}else{ //非单个文件下载
+			List<String> packFile = new ArrayList<String>();
+			for(List<Category> l1 : l){
+				StringBuilder sb = new StringBuilder("D:/FileSys/upload/" + user.getUsername());
+				for(Category category : l1){
+					sb.append("/"+category.getTitle());
 				}
+				packFile.add(sb.toString());
+			}
+			for(Files f : fileList){
+				packFile.add(f.getFilepath());
+			}
+			
+			String fileName = "";
+			if(categoryList.size() == 1 && fileList.size() == 0){
+				fileName = categoryList.get(0).getTitle()+".zip";
+			}else{
+				fileName = new Date().getTime()+".zip";
+			}
+			PackFilesUtil.zip(packFile, "D:/FileSys/download/"+fileName);
+			
+			
+			String name =new String(fileName.getBytes(), "iso-8859-1");
+			File fileLoad = new File("D:/FileSys/download/"+fileName);
+			response.setHeader("Content-disposition", "attachment;filename="
+					+ name);
+			// set the MIME type.
+			response.setContentType("application/zip");
+			long fileLength = fileLoad.length();
+			String length = String.valueOf(fileLength);
+			response.setHeader("Content_Length", length);
+			// download the file.
+			FileInputStream in = new FileInputStream(fileLoad);
+			int n = 0;
+			while ((n = in.read(b)) != -1) {
+				o.write(b, 0, n);
 			}
 		}
 	}
