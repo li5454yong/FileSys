@@ -12,6 +12,8 @@
 		<!--标签云结束-->
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		
+		<script type="text/javascript" src="../js/json2.js"></script>
+		<script type="text/javascript" src="../js/mycenter.js"></script>
 		<style>
 			body{
 				background: #EEF8FE;
@@ -111,7 +113,8 @@
 					</#list>
 				</div>
 			</div>
-			<p class="share-time">分享时间：2015-12-10</p>
+			<input id="userId" type="hidden" value="${userId}">
+			<p class="share-time">分享时间：${shareDate?string("yyyy-MM-dd")}</p>
 			<div class="down-pinglun">
 				<div class="down-pinglun-xiangqing">
 					<img src="../img/pinglun.png" />评论详情
@@ -135,14 +138,61 @@
 		<!--主体内容结束-->
 		<!--页面左侧-->
 		
-
-
-	</body>
-	<script>
+<script>
 		function next(selfId) {
-		window.location.href = "${ctx}/toMycenter?pId=" 
-				+ selfId+"&selfId="+selfId;
+		var userId = $("#userId").val();
+		var url = window.location.href;
+		$.ajax({
+			url:'../share/getnext',
+			data:{'pId':selfId,'selfId':selfId,'user_id':userId,'url':url},
+			type:'POST',
+			success:function(data){
+				var str = '';
+				var result = data.message;
+				var results = result.split("@LXG");
+				var jsonObj1 = JSON.parse(results[0]);
+				var jsonObj2 = JSON.parse(results[1]);
+				
+				$.each(jsonObj1,function(i,item){
+					str += '<div class="textbox-1" style="position: relative;" >'
+							+'<label> <input type="checkbox" name="selected" fType="category" fId="'+item.id+'"/> '
+							+'<span class="checkboxbg"></span>'
+							+'<div class="grzx-right-main-list">'
+							+'		<span class="grzx-right-wjm"> '
+							+'		<img src="../img/wenjianjia.png" /> '
+							+'		<a href="javascript:next('+item.self_id+');">'+item.title+'</a>'
+							+'		</span> <span class="grzx-right-dx">--</span> '
+							+'		<span class="grzx-right-time"> '
+							+fromatDate(new Date(item.upd_date))
+							+'		</span>'
+							+'	</div>'
+							+'</label>'
+							+'</div>';
+				});
+				
+				$.each(jsonObj2,function(i,item){
+					str += '<div class="textbox-1" style="position: relative;" >'
+							+'<label> <input type="checkbox" name="selected" fType="category" fId="'+item.id+'"/> '
+							+'<span class="checkboxbg"></span>'
+							+'<div class="grzx-right-main-list">'
+							+'		<span class="grzx-right-wjm"> '
+							+'		<img src="../'+item.icon_path+'" /> '
+							+item.filename
+							+'		</span> <span class="grzx-right-dx">'+item.filesize+'</span> '
+							+'		<span class="grzx-right-time"> '
+							+fromatDate(new Date(item.upd_date))
+							+'		</span>'
+							+'	</div>'
+							+'</label>'
+							+'</div>';
+				});
+				$("#textbox").html(str);
+			}
+		});
 		}
 	
 	</script>
+
+	</body>
+	
 </html>

@@ -82,6 +82,8 @@ public class FileController extends BasicController {
 				shareObj.setInit_date(new Date());
 				shareObj.setShare_date(new Date());
 				shareObj.setUpd_date(new Date());
+				shareObj.setSelf_id(category.getSelf_id());
+				shareObj.setP_id(category.getP_id());
 				
 				shareList.add(shareObj);
 			}else if("file".equals(s.getType())){
@@ -95,10 +97,13 @@ public class FileController extends BasicController {
 				shareObj.setInit_date(new Date());
 				shareObj.setShare_date(new Date());
 				shareObj.setUpd_date(new Date());
+				shareObj.setCategory_id(file.getCategory_id());
 				
 				shareList.add(shareObj);
 			}
 		}
+		
+		String url = "";
 		
 		if(fileList.size()==1 && categoryList.size() == 0){
 			String htmlName = UUIDUtil.get8str()+".html";
@@ -106,9 +111,9 @@ public class FileController extends BasicController {
 			sb.append(htmlName);
 			//生成静态页面
 			CreateHtmlUtil.createHtmlForFile(fileList.get(0), request.getServletContext(), 
-					sb.toString(),"publicShareFile.ftl");
-			
-			param.put("url", "http://localhost:8080/FileSys/publicShare/"+htmlName);
+					sb.toString(),"publicShareFile.ftl",user.getId(),new Date());
+			url = "http://localhost:8080/FileSys/publicShare/"+htmlName;
+			param.put("url", url);
 			
 			Durl = DwzUtil.getDwz(param);
 			
@@ -118,13 +123,14 @@ public class FileController extends BasicController {
 			sb.append(htmlName);
 			//生成静态页面
 			CreateHtmlUtil.createHtmlForList(fileList,categoryList, request.getServletContext(), 
-					sb.toString(),"publicShareFiles.ftl");
+					sb.toString(),"publicShareFiles.ftl",user.getId(),new Date());
+			url = "http://localhost:8080/FileSys/publicShare/"+htmlName;
 			
 			param.put("url", "http://localhost:8080/FileSys/publicShare/"+htmlName);
 			
 			Durl = DwzUtil.getDwz(param);
 		}
-		shareService.batchEntityByHQL(shareList, Durl);
+		shareService.batchEntityByHQL(shareList, url);
 		return saveSuccess(Durl);
 	}
 	
@@ -186,7 +192,7 @@ public class FileController extends BasicController {
 			sb.append(htmlName);
 			//生成静态页面
 			CreateHtmlUtil.createHtmlForFile(fileList.get(0), request.getServletContext(), 
-					sb.toString(),"privateShareFile.ftl");
+					sb.toString(),"privateShareFile.ftl",user.getId(),new Date());
 			url = "http://localhost:8080/FileSys/privateShare/"+htmlName;
 			param.put("url", url);
 			
@@ -198,7 +204,7 @@ public class FileController extends BasicController {
 			sb.append(htmlName);
 			//生成静态页面
 			CreateHtmlUtil.createHtmlForList(fileList,categoryList, request.getServletContext(), 
-					sb.toString(),"privateShareFiles.ftl");
+					sb.toString(),"privateShareFiles.ftl",user.getId(),new Date());
 			url = "http://localhost:8080/FileSys/privateShare/"+htmlName;
 			param.put("url", url);
 			

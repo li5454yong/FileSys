@@ -100,7 +100,8 @@
 				<p>文件大小：${file.filesize }</p>
 				<button>下载(${file.filesize })</button>
 			</div>
-			<p class="share-time">分享时间：2015-12-10</p>
+			<input id="userId" type="hidden" value="${userId}">
+			<p class="share-time">分享时间：${shareDate?string("yyyy-MM-dd")}</p>
 			<div class="down-pinglun">
 				<div class="down-pinglun-xiangqing">
 					<img src="../img/pinglun.png" />评论详情

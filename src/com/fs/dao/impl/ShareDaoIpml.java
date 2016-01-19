@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import com.fs.dao.ShareDao;
+import com.fs.entity.Category;
 import com.fs.entity.Share;
 
 /**
@@ -64,6 +65,12 @@ public class ShareDaoIpml implements ShareDao {
 		}
 		
 		return flag;
+	}
+
+	@Override
+	public List<Category> getCategoryList(String p_id, String url) {
+		String sql = "from Category where id in(select f_id from Share where p_id=? and shareUrl=?)";
+		return null;
 	}
 
 }

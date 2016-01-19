@@ -5,13 +5,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-
-import org.junit.Test;
 
 import com.fs.entity.Category;
 import com.fs.entity.Files;
@@ -34,7 +33,8 @@ public class CreateHtmlUtil {
 	 * @param htmlPath
 	 */
 	@SuppressWarnings("deprecation")
-	public static void createHtmlForList(List<Files> fileList,List<Category> categoryList, ServletContext context,String htmlPath, String template) {
+	public static void createHtmlForList(List<Files> fileList,List<Category> categoryList, 
+			ServletContext context,String htmlPath, String template,Integer user_id,Date d) {
 		try {
 			// 开始设置Freemarker
 			Configuration cfg = new Configuration();
@@ -51,6 +51,8 @@ public class CreateHtmlUtil {
 			Map<String, Object> root = new HashMap<String, Object>();
 			root.put("fileList", fileList);
 			root.put("categoryList", categoryList);
+			root.put("userId", user_id);
+			root.put("shareDate", d);
 			
 			File htmlFile = new File(htmlPath);
 			// 判断路径是否存在，不存在则创建相应路径
@@ -71,7 +73,7 @@ public class CreateHtmlUtil {
 		}
 	}
 	
-	public static void createHtmlForFile(Files file, ServletContext context,String htmlPath,String template) {
+	public static void createHtmlForFile(Files file, ServletContext context,String htmlPath,String template,Integer user_id,Date d) {
 		try {
 			// 开始设置Freemarker
 			Configuration cfg = new Configuration();
@@ -87,7 +89,8 @@ public class CreateHtmlUtil {
 			// 将需要在客户端浏览器中显示的业务数据放在一个map中，传递给FreeMarker
 			Map<String, Object> root = new HashMap<String, Object>();
 			root.put("file", file);
-
+			root.put("userId", user_id);
+			root.put("shareDate", d);
 			File htmlFile = new File(htmlPath);
 			// 判断路径是否存在，不存在则创建相应路径
 			if (!htmlFile.getParentFile().exists()) {

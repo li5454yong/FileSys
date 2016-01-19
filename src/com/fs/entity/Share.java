@@ -27,6 +27,12 @@ public class Share {
 	
 	private int f_id; //分享的文件或文件夹的id
 	
+	private String self_id; //自身id 类型为文件夹时不为空
+	
+	private String p_id; // 上级id  类型为文件夹时不为空
+	
+	private String category_id; // 所属分类id  类型为文件时不为空
+	
 	private Date init_date;
 	
 	private Date upd_date;
@@ -106,6 +112,30 @@ public class Share {
 
 	public void setShare_date(Date share_date) {
 		this.share_date = share_date;
+	}
+
+	public String getSelf_id() {
+		return self_id;
+	}
+
+	public void setSelf_id(String self_id) {
+		this.self_id = self_id;
+	}
+
+	public String getP_id() {
+		return p_id;
+	}
+
+	public void setP_id(String p_id) {
+		this.p_id = p_id;
+	}
+
+	public String getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(String category_id) {
+		this.category_id = category_id;
 	}
 	
 	

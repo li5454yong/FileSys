@@ -2,6 +2,7 @@ package com.fs.dao;
 
 import java.util.List;
 
+import com.fs.entity.Category;
 import com.fs.entity.Share;
 
 /**
@@ -16,4 +17,6 @@ public interface ShareDao {
 	public void batchEntityByHQL(List<Share> list,String shareUrl,String passwd);
 	
 	public int getPrivateShare(String url,String passwd);
+	
+	public List<Category> getCategoryList(String p_id,String url);
 }
