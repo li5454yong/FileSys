@@ -26,33 +26,35 @@ public class PackFilesUtil {
     }
 
     private static void zip(String zipFileName, List<String> list) throws Exception {
-        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFileName));
-        out.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
+        ZipOutputStream o = new ZipOutputStream(new FileOutputStream(zipFileName));
+        o.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
         for(String str : list){
         	File f = new File(str);
-        	zip(out, f, str.substring(str.lastIndexOf("/")+1, str.length()));
+        	System.out.println(f.isDirectory());
+        	zip(o, f, str.substring(str.lastIndexOf("/")+1, str.length()));
         }
         System.out.println("压缩完成");
-        out.close();
+        o.close();
     }
 
-    private static void zip(ZipOutputStream out, File f, String base) throws Exception {
-        if (f.isDirectory()) {
+    private static void zip(ZipOutputStream o, File f, String base) throws Exception {
+       
+    	if (f.isDirectory()) {
            File[] fl = f.listFiles();
-           out.putNextEntry(new ZipEntry(base + "/"));
-           out.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
+           o.putNextEntry(new ZipEntry(base + "/"));
+           o.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
            base = base.length() == 0 ? "" : base + "/";
            for (int i = 0; i <fl.length; i++) {
-           zip(out, fl[i], base + fl[i].getName());
+           zip(o, fl[i], base + fl[i].getName());
          }
         }else {
-           out.putNextEntry(new ZipEntry(base));
-           out.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
+           o.putNextEntry(new ZipEntry(base));
+           o.setEncoding(System.getProperty("sun.jnu.encoding"));//设置文件名编码方式
            FileInputStream in = new FileInputStream(f);
            int b;
            System.out.println(base);
            while ( (b = in.read()) != -1) {
-            out.write(b);
+            o.write(b);
          }
          in.close();
        }

@@ -45,6 +45,19 @@ public class UserServiceImpl implements
 		dao.updateSpace(size, id);
 	}
 
+	/**
+	 * 根据id获取用户
+	 */
+	public User getUser(Object... objects) {
+		String hql = "from User where id=?";
+		try{
+			return dao.findEntity(hql, objects).get(0);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 
 }

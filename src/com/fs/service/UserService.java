@@ -12,6 +12,8 @@ import com.fs.entity.User;
 public interface UserService {
 	public List<User> login(Object... objects);
 	
+	public User getUser(Object... objects);
+	
 	public void userReg(Object... obj);
 	
 	//修改用户可用空间大小

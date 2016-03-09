@@ -67,6 +67,13 @@
 				</ul>
 				<div style="clear: both;"></div>
 			</div>
+			
+			
+			<div class="grzx-but-reaches" style="height:15px;">
+			
+			</div>
+			
+			
 			<div class="grzx-right-main" >
 				<div style="position: relative;" id="titleBar">
 					<label> <input type="checkbox" onclick="selectAll()"
@@ -152,6 +159,7 @@
 				var results = result.split("@LXG");
 				var jsonObj1 = JSON.parse(results[0]);
 				var jsonObj2 = JSON.parse(results[1]);
+				var jsonObj3 = JSON.parse(results[2]);
 				
 				$.each(jsonObj1,function(i,item){
 					str += '<div class="textbox-1" style="position: relative;" >'
@@ -186,11 +194,28 @@
 							+'</label>'
 							+'</div>';
 				});
+				
+				var str1 = '&nbsp;&nbsp;&nbsp;<a href="javascript:reload();">全部</a>';
+				$.each(jsonObj3,function(i,item){
+				str1 += '&nbsp;>&nbsp;<a href="javascript:next('+item.self_id+');">'+item.title +'</a>'
+					//alert(item.title);
+				});
 				$("#textbox").html(str);
+				$(".grzx-but-reaches").html(str1);
 			}
 		});
 		}
 	
+	function reload(){
+		window.location.reload();
+	}
+	
+	// 文件下载
+	function download(){
+		var userId = $("#userId").val();
+		var url = window.location.href;
+		location.href = '../share/download?url='+url+'&user_id='+userId;
+	}
 	</script>
 
 	</body>

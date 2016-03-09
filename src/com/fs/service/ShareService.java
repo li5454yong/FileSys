@@ -17,4 +17,7 @@ public interface ShareService {
 			String passwd);
 	
 	public int getPrivateShare(String url, String passwd);
+	
+	//根据url获取分享的文件信息
+	public List<Share> getShareList(String url);
 }

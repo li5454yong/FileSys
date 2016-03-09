@@ -1,5 +1,6 @@
 package com.fs.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,9 @@ public class CategoryController extends BasicController {
 	@Resource
 	private FilesService filesService;
 
+	
+	@Resource
+	private CategoryService categoryService;
 	/**
 	 * 点击文件夹时获取他的子类
 	 * @param selfId
@@ -66,12 +70,18 @@ public class CategoryController extends BasicController {
 	public @ResponseBody WebMessage addCategory(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		User user = getAuthUser();
+		
+		
+		
 		if (user != null) {
 			Category category = new Category();
 			String title = request.getParameter("title");
 			String pId = request.getParameter("pId");
 			String length = request.getParameter("length");
 			StringBuilder sb = new StringBuilder();
+			
+			List<Category> parentList = categoryService.getParentList(pId,user.getId());
+			
 			if (!"0".equals(pId)) {
 				sb.append(pId);
 				sb.append(10 + Integer.parseInt(length));
@@ -85,8 +95,21 @@ public class CategoryController extends BasicController {
 			category.setUpd_date(new Date());
 			category.setU_id(user.getId());
 			boolean flag = service.getCategoryByName(title, user.getId(), pId);
+			
+			StringBuilder sb1 = new StringBuilder("D:/FileSys/upload/" + user.getUsername());
+			
 			if (flag) { // 判断分类是否存在
 				service.save(category);
+				
+				for(Category c : parentList){
+					sb1.append("/"+c.getTitle());
+				}
+				sb1.append("/"+title);
+				File file = new File(sb1.toString());
+				if(!file.exists()){
+					file.mkdirs();
+				}
+				
 				return saveSuccess("toMycenter");
 			} else {
 				return saveSuccess("false");

@@ -45,7 +45,7 @@ public class ShareDaoIpml implements ShareDao {
 	}
 
 	/**
-	 * 根据
+	 * 根据url 获取私密分享的文件
 	 */
 	public int getPrivateShare(String url, String passwd) {
 		
@@ -68,9 +68,12 @@ public class ShareDaoIpml implements ShareDao {
 	}
 
 	@Override
-	public List<Category> getCategoryList(String p_id, String url) {
-		String sql = "from Category where id in(select f_id from Share where p_id=? and shareUrl=?)";
-		return null;
+	public List<Share> getShareList(String url) {
+		String sql = "from Share where shareUrl=? and type=1";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, url);
+		
+		return query.list();
 	}
 
 }

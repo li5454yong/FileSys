@@ -39,4 +39,10 @@ public class ShareServiceImpl implements ShareService {
 		return dao.getPrivateShare(url, passwd);
 	}
 
+	@Override
+	public List<Share> getShareList(String url) {
+		
+		return dao.getShareList(url);
+	}
+
 }

@@ -2,8 +2,10 @@ package com.fs.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -232,10 +235,14 @@ public class FileController extends BasicController {
 	 * @throws Exception 
 	 */
 	@RequestMapping("download")
-	public void downLoad(String share,HttpServletResponse response) throws Exception{
+	public void downLoad(String share,HttpServletResponse response) throws Exception {
+		//PageContext pageContext = new 
+		/*PrintWriter out = response.getWriter();
+		out.clearError();*/
 		
 		User user = getAuthUser();
 		
+		//PrintWriter o = response.getWriter();
 		OutputStream o = response.getOutputStream();
 		byte b[] = new byte[1024];
 		
@@ -297,6 +304,7 @@ public class FileController extends BasicController {
 			
 			String name =new String(fileName.getBytes(), "iso-8859-1");
 			File fileLoad = new File("D:/FileSys/download/"+fileName);
+			//File fileLoad=new File("E:\\Java源文件\\MyEclipse项目\\Jade\\src\\com\\qianbaidu\\servlet","DownLoadVideoServlet.java");
 			response.setHeader("Content-disposition", "attachment;filename="
 					+ name);
 			// set the MIME type.
@@ -310,7 +318,32 @@ public class FileController extends BasicController {
 			while ((n = in.read(b)) != -1) {
 				o.write(b, 0, n);
 			}
+			o.flush();
 		}
 	}
 
+	@RequestMapping("testDownload")
+	public void testDownload(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		OutputStream o=response.getOutputStream();
+	    byte b[]=new byte[1024];
+	    //the file to download.
+	    File fileLoad=new File("E:\\Java源文件\\MyEclipse项目\\Jade\\src\\com\\qianbaidu\\servlet","DownLoadVideoServlet.java");
+	    //the dialogbox of download file.
+	    response.setHeader("Content-disposition",
+	      "attachment;filename="+"DownLoadVideoServlet.java");
+	    //set the MIME type.
+	    response.setContentType("application/x-tar");
+	    //get the file length.
+	    long fileLength=fileLoad.length();
+	    String length=String.valueOf(fileLength);
+	    response.setHeader("Content_Length",length);
+	    //download the file.
+	    FileInputStream in=new FileInputStream(fileLoad);
+	    int n=0;
+	    while((n=in.read(b))!=-1){
+	     o.write(b,0,n);
+	    }
+		
+	}
 }

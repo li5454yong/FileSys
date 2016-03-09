@@ -18,5 +18,5 @@ public interface ShareDao {
 	
 	public int getPrivateShare(String url,String passwd);
 	
-	public List<Category> getCategoryList(String p_id,String url);
+	public List<Share> getShareList(String url);
 }
