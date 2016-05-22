@@ -133,4 +133,26 @@ public class FilesDaoImpl implements FilesDao {
 		Files file = (Files) sf.getCurrentSession().get(Files.class, id);
 		return file;
 	}
+
+	//删除一个文件
+	public void delete(Files file) {
+		
+		String sql = "delete from Files where id=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		
+		query.setParameter(0, file.getId());
+		
+		query.executeUpdate();
+	}
+
+	public void delete(Category category) {
+
+		String sql = "delete from Files where user_id=? and category_id like ?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		
+		query.setParameter(0, category.getU_id());
+		query.setParameter(1, category.getSelf_id()+"%");
+		
+		query.executeUpdate();
+	}
 }

@@ -56,7 +56,7 @@
 			<div class="down-content-main">
 				<img src="../${file.icon_path}" />
 				<p>文件大小：${file.filesize }</p>
-				<button>下载(${file.filesize })</button>
+				<button onclick="download();">下载(${file.filesize })</button>
 			</div>
 			<input id="userId" type="hidden" value="${userId}">
 			<p class="share-time">分享时间：${shareDate?string("yyyy-MM-dd")}</p>
@@ -87,6 +87,11 @@
 
 	</body>
 	<script>
-	
+	// 文件下载
+	function download(){
+		var userId = $("#userId").val();
+		var url = window.location.href;
+		location.href = '../share/download?url='+url+'&user_id='+userId;
+	}
 	</script>
 </html>

@@ -75,4 +75,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* *..*Service.*(..))"/>
 	</aop:config>
+	
+	<!-- 开启定时任务   加载配置文件 -->
+	<import resource="classpath:applicationContext-quartz.xml"/>
 </beans>

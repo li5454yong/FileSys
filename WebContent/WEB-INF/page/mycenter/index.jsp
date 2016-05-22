@@ -64,9 +64,16 @@
 				<img src="${ctx }/img/logo.png" />
 			</div>
 			<div class="grzx-head-menu">
-				<span class="grzx-head-menu1 active">主页</span> <span
-					class="grzx-head-menu1">收藏</span> <span class="grzx-head-menu1">分享</span>
-				<span class="grzx-head-menu1">上传</span>
+				<span class="grzx-head-menu1 active">主页</span> 
+				<!-- <span class="grzx-head-menu1">收藏</span>  -->
+					<span class="grzx-head-menu1" onclick="toMyShare();">分享</span>
+				<!-- <span class="grzx-head-menu1">上传</span> -->
+			</div>
+			<div class="search-button">
+				<div style="position: relative;">
+					<input class="search-text" id="key" type="text">
+					<button class="search-but" onclick="search();"></button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -181,7 +188,7 @@
 						<button data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">
 						<img src="${ctx }/img/fenxiang-hui.png" />分享</button>
 						<button onclick="downLoad();"><img src="${ctx }/img/xiazai-hui.png" />下载</button>
-						<button><img src="${ctx }/img/sahcnhu-hui.png" />删除</button>
+						<button onclick="del();"><img src="${ctx }/img/sahcnhu-hui.png" />删除</button>
 					</div>
 				</div>
 				<div id="textbox">
@@ -231,13 +238,10 @@
 				<div id="myMenu">
 					<table cellspace="3">
 						<tr class="xiazai">
-							<td class="btn">下载</td>
+							<td class="btn" onclick="downLoad();">下载</td>
 						</tr>
 						<tr class="shanchu">
-							<td class="btn">删除</td>
-						</tr>
-						<tr class="name">
-							<td class="btn">重命名</td>
+							<td class="btn" onclick="del();">删除</td>
 						</tr>
 						<tr class="share">
 							<td class="btn"  data-toggle="modal" data-target="#myModal2" onclick="hideMenu();">分享</td>
@@ -368,6 +372,38 @@
 	function upload(){
 		//alert(1);
 	}
+
+	//删除功能
+	function del(){
+		var cheaked = $(".textbox-1").find("input[name=selected]");
+		var array = new Array();
+		for(var i=0;i<cheaked.length;i++){
+			var obj;
+			var c = cheaked[i];
+			isChecked = $(c).prop("checked");
+			if(isChecked){
+				obj={
+						'id':$(c).attr("fId"),
+						'type':$(c).attr("fType")
+				};
+				array.push(obj);
+			}
+		} 
+		var str = JSON.stringify(array);
+		
+		$.ajax({
+			url:'${ctx}/files/delete',
+			type:'POST',
+			data:{'share':str},
+			success:function(data){
+				if(data == 0){
+					alert("删除成功");
+					window.location.reload();
+				}
+			}
+		});
+	}
+	
 	//创建公开分享链接
 	function paublicShare(){
 		
@@ -436,6 +472,53 @@
 		});
 	}
 	
+	/**
+	* 查询
+	*/
+	function search(){
+		var q = $("#key").val();
+		if(q == ''){
+			alert("请输入搜索关键字！");
+			return false;
+		}
+		var qString = encodeURI(q);
+		var url = 'http://localhost:8090/solr/collection1/select?'
+				+'q=ctitle:'+qString
+				+'&wt=json&indent=true&hl=true&hl.fl=ctitle'
+				+'&hl.simple.pre=<font style="color:red;">'
+				+'&hl.simple.post=</font>'
+				+'&start=0&rows=100'
+				+'&json.wrf=callback';
+		
+		$.ajax({
+			url:url,
+			dataType:'jsonp'
+		});
+	}
+	//查询回调
+	function callback(data){
+		var docs = data.response.docs;
+		var str = '';
+		var hi = data.highlighting;
+		$.each(docs,function(index,item){
+			var docid = item.id;
+			for(var el in hi){
+				if(el==docid){
+					str +='<div class="search">'
+						+'<a href="'+item.curl+'" target="view_window"><div class="search-list">'
+						+'<p class="search-fiel-name">'+hi[el].ctitle+'</p>'
+						+'<span class="search-fiel-source">来源：云数据</span>'
+						+'<span class="search-fiel-date">分享时间：'+item.sDate+'</span>'
+						+'</div></a>'
+						+'</div>';
+					//str +='<div>'+hi[el].ctitle+'</div><br><br>'+ item.curl + item.sDate;
+				}
+			}
+		});
+		$(".grzx-right").html(str);
+	}
+	
+	
 	function downLoad(){
 		var cheaked = $(".textbox-1").find("input[name=selected]");
 		var array = new Array();
@@ -459,6 +542,10 @@
 	function next(selfId) {
 		window.location.href = "${ctx}/toMycenter?pId=" 
 				+ selfId+"&selfId="+selfId;
+	}
+	
+	function toMyShare(){
+		window.location.href='${ctx}/share/getShareList';
 	}
 </script>
 </html>

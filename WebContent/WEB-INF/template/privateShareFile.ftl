@@ -82,8 +82,8 @@
 			<div class="down-content-title">
 				<span class="down-wjm"><img src="../${file.icon_path}" />${file.filename }</span>
 				<span class="down-sc">
-					<button><img src="../img/shoucang.png" /> 收藏</button>
-					<button>举报</button>
+					<!--<button><img src="../img/shoucang.png" /> 收藏</button>-->
+					<!--<button>举报</button>-->
 				</span>
 			</div>
 			<div class="down-content-sub-title">
@@ -98,7 +98,7 @@
 			<div class="down-content-main file">
 				<img src="../${file.icon_path}" />
 				<p>文件大小：${file.filesize }</p>
-				<button>下载(${file.filesize })</button>
+				<button onclick="download();">下载(${file.filesize })</button>
 			</div>
 			<input id="userId" type="hidden" value="${userId}">
 			<p class="share-time">分享时间：${shareDate?string("yyyy-MM-dd")}</p>
@@ -132,6 +132,12 @@
 		</div>
 	</body>
 	<script>
+	// 文件下载
+	function download(){
+		var userId = $("#userId").val();
+		var url = window.location.href;
+		location.href = '../share/download?url='+url+'&user_id='+userId;
+	}
 		function tijiao(){
 			var passwd = $("#passwd").val();
 			var url = window.location.href;
@@ -140,7 +146,7 @@
 				data:{'url':url,'passwd':passwd},
 				type:'POST',
 				success:function(data){
-				alert(data.message);
+				//alert(data.message);
 					if(data.message == 0){
 						$("#mima").hide();
 						$(".file").show();

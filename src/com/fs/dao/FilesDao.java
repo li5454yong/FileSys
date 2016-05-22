@@ -2,6 +2,7 @@ package com.fs.dao;
 
 import java.util.List;
 
+import com.fs.entity.Category;
 import com.fs.entity.Files;
 import com.fs.entity.Filing;
 
@@ -29,4 +30,10 @@ public interface FilesDao {
 	
 	//根据id获取文件
 	public Files get(int id);
+	
+	//删除一个文件
+	public void delete(Files file);
+	
+	//删除一个文件夹下的文件
+	public void delete(Category category);
 }

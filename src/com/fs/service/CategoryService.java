@@ -33,4 +33,8 @@ public interface CategoryService {
 	public List<Category> getPaublicShare(String publicSharePath);
 	
 	public Category get(int id);
+	//删除一个文件夹及其子文件夹
+	public void delete(int userId,Category category);
+	
+	public void delete(Category category);
 }

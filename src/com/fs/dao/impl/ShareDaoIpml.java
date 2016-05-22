@@ -67,11 +67,33 @@ public class ShareDaoIpml implements ShareDao {
 		return flag;
 	}
 
-	@Override
+	/**
+	 * 获取公开分享的文件
+	 */
 	public List<Share> getShareList(String url) {
 		String sql = "from Share where shareUrl=? and type=1";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setString(0, url);
+		
+		return query.list();
+	}
+	
+	/**
+	 * 根据url获取该链接下分享的文件和文件夹
+	 */
+	public List<Share> getShareList1(String url) {
+		String sql = "from Share where shareUrl=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setString(0, url);
+		
+		return query.list();
+	}
+
+
+	public List<Share> getShareUrlList(int user_id) {
+		String sql = "from Share where user_id=? GROUP BY shareUrl";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		query.setInteger(0, user_id);
 		
 		return query.list();
 	}

@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		
 		<script type="text/javascript" src="../js/json2.js"></script>
-		<script type="text/javascript" src="../js/mycenter.js"></script>
+		<!--<script type="text/javascript" src="../js/mycenter.js"></script>-->
 		<style>
 			body{
 				background: #EEF8FE;
@@ -53,8 +53,8 @@
 		<div class="down-content">
 			<div class="down-content-title">
 				<span class="down-sc">
-					<button><img src="../img/shoucang.png" /> 收藏</button>
-					<button>举报</button>
+					<!--<button><img src="../img/shoucang.png" /> 收藏</button>-->
+					<button onclick="download();">下载</button>
 				</span>
 				<div style="clear:both"></div>
 			</div>

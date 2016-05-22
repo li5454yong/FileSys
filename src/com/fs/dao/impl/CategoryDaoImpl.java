@@ -132,4 +132,30 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 		return category;
 	}
+	
+	/**
+	 * 删除一个文件夹及其子文件夹
+	 * @param userId
+	 * @param category
+	 */
+	public void delete(int userId,Category category){
+		
+		//sf.getCurrentSession().delete(category);
+		String sql = "delete from Category where u_id=? and p_id like ?";
+		Query query = sf.getCurrentSession().createSQLQuery(sql);
+		
+		query.setParameter(0, userId);
+		query.setParameter(1, category.getSelf_id()+"%");
+		
+		query.executeUpdate();
+	}
+	
+	public void delete(Category category){
+		String sql = "delete from Category where id=?";
+		Query query = sf.getCurrentSession().createQuery(sql);
+		
+		query.setParameter(0, category.getId());
+		
+		query.executeUpdate();
+	}
 }

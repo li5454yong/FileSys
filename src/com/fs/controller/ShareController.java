@@ -11,13 +11,16 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.fs.entity.Category;
 import com.fs.entity.Files;
+import com.fs.entity.Filing;
 import com.fs.entity.Share;
+import com.fs.entity.ShareList;
 import com.fs.entity.User;
 import com.fs.service.CategoryService;
 import com.fs.service.FilesService;
@@ -116,12 +119,12 @@ public class ShareController extends BasicController{
 		//获取要 下载的文件夹和文件列表
 		for(Share s : shareList){
 			if(s.getType() == 1){
-				Category category = categoryService.get(s.getId());
+				Category category = categoryService.get(s.getF_id());
 				categoryList.add(category);
 				List<Category> parentList = categoryService.getParentList(category.getSelf_id(),user_id);
 				l.add(parentList);
 			}else if(s.getType() == 2){
-				Files file = filesService.get(s.getId());
+				Files file = filesService.get(s.getF_id());
 				fileList.add(file);
 			}
 		}
@@ -184,5 +187,58 @@ public class ShareController extends BasicController{
 			o.flush();
 		}
 		
+	}
+
+	/**
+	 * 获取用户分享的所有文件（按url分组）
+	 * @return
+	 */
+	@RequestMapping("getShareList")
+	public String getShareList(ModelMap map){
+		
+		User user = getAuthUser();
+		if(user == null){
+			return redirect("toLogin");
+		}
+		List<Filing> filingList = filesService.getFiling(user.getId());
+		List<Category> tagCloud = categoryService.getCategoryList(null,user.getId());
+		List<Share> list1 = shareService.getShareUrlList(user.getId());
+		//List<ShareList> list2 = new ArrayList<ShareList>();
+		
+		List<ShareList> l = new ArrayList<ShareList>();
+		
+		/*List<Category> categoryList = new ArrayList<Category>();
+		List<Files> fileList = new ArrayList<Files>(); */
+		
+		for(Share s : list1){
+			
+			List<Category> categoryList = new ArrayList<Category>();
+			List<Files> fileList = new ArrayList<Files>(); 
+			
+			List<Share> list3 = shareService.getShareList1(s.getShareUrl());
+			ShareList shareList = new ShareList();
+			for(Share s1 : list3){
+				if(s1.getType() == 1){
+					Category category = categoryService.get(s1.getF_id());
+					categoryList.add(category);
+				}else if(s1.getType() == 2){
+					Files file = filesService.get(s1.getF_id());
+					fileList.add(file);
+				}
+				
+			}
+			shareList.setCategoryList(categoryList);
+			shareList.setFileList(fileList);
+			shareList.setUrl(s.getShareUrl());
+			shareList.setInit_date(s.getInit_date());
+			
+			l.add(shareList);
+		}
+		map.addAttribute("list", l);
+		map.addAttribute("filingList", filingList);
+		map.addAttribute("tagCloud", tagCloud);
+		//String jsonStr = JSON.toJSONString(l);
+		//System.out.println(jsonStr);
+		return "file/myShare";
 	}
 }

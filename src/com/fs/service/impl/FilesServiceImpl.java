@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fs.dao.FilesDao;
 import com.fs.dao.UserDao;
+import com.fs.entity.Category;
 import com.fs.entity.Files;
 import com.fs.entity.Filing;
 import com.fs.service.FilesService;
@@ -65,6 +66,14 @@ public class FilesServiceImpl implements FilesService {
 	public Files get(int id) {
 		
 		return dao.get(id);
+	}
+
+	public void delete(Files file) {
+		dao.delete(file);
+	}
+
+	public void delete(Category category) {
+		dao.delete(category);
 	}
 
 }

@@ -99,8 +99,8 @@
 		<div class="down-content file">
 			<div class="down-content-title">
 				<span class="down-sc">
-					<button><img src="../img/shoucang.png" /> 收藏</button>
-					<button>举报</button>
+					<!--<button><img src="../img/shoucang.png" /> 收藏</button>-->
+					<button onclick="download();">下载</button>
 				</span>
 				<div style="clear:both"></div>
 			</div>
@@ -202,7 +202,7 @@
 				data:{'url':url,'passwd':passwd},
 				type:'POST',
 				success:function(data){
-				alert(data.message);
+				//alert(data.message);
 					if(data.message == 0){
 						$("#mima").hide();
 						$(".file").show();
@@ -227,6 +227,7 @@
 				var results = result.split("@LXG");
 				var jsonObj1 = JSON.parse(results[0]);
 				var jsonObj2 = JSON.parse(results[1]);
+				var jsonObj3 = JSON.parse(results[2]);
 				
 				$.each(jsonObj1,function(i,item){
 					str += '<div class="textbox-1" style="position: relative;" >'
@@ -261,9 +262,23 @@
 							+'</label>'
 							+'</div>';
 				});
+				var str1 = '&nbsp;&nbsp;&nbsp;<a href="javascript:reload();">全部</a>';
+				$.each(jsonObj3,function(i,item){
+				str1 += '&nbsp;>&nbsp;<a href="javascript:next('+item.self_id+');">'+item.title +'</a>'
+					//alert(item.title);
+				});
+				
 				$("#textbox").html(str);
+				$(".grzx-but-reaches").html(str1);
 			}
 		});
 		}
+		
+		// 文件下载
+	function download(){
+		var userId = $("#userId").val();
+		var url = window.location.href;
+		location.href = '../share/download?url='+url+'&user_id='+userId;
+	}
 	</script>
 </html>

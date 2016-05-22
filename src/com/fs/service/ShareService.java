@@ -20,4 +20,9 @@ public interface ShareService {
 	
 	//根据url获取分享的文件信息
 	public List<Share> getShareList(String url);
+	
+	//根据url获取分享的文件信息
+	public List<Share> getShareList1(String url);
+	
+	public List<Share> getShareUrlList(int user_id);
 }

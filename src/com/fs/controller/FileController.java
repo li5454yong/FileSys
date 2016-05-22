@@ -322,28 +322,45 @@ public class FileController extends BasicController {
 		}
 	}
 
-	@RequestMapping("testDownload")
-	public void testDownload(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	/**
+	 * 删除文件或文件夹
+	 * @param share
+	 * @param request
+	 */
+	@RequestMapping("delete")
+	public void delete(String share,HttpServletRequest request,PrintWriter out){
+		User user = getAuthUser();
+		List<ShareDate> list = JSONArray.parseArray(share, ShareDate.class); //获取页面传递过来的要删除的文件信息
 		
-		OutputStream o=response.getOutputStream();
-	    byte b[]=new byte[1024];
-	    //the file to download.
-	    File fileLoad=new File("E:\\Java源文件\\MyEclipse项目\\Jade\\src\\com\\qianbaidu\\servlet","DownLoadVideoServlet.java");
-	    //the dialogbox of download file.
-	    response.setHeader("Content-disposition",
-	      "attachment;filename="+"DownLoadVideoServlet.java");
-	    //set the MIME type.
-	    response.setContentType("application/x-tar");
-	    //get the file length.
-	    long fileLength=fileLoad.length();
-	    String length=String.valueOf(fileLength);
-	    response.setHeader("Content_Length",length);
-	    //download the file.
-	    FileInputStream in=new FileInputStream(fileLoad);
-	    int n=0;
-	    while((n=in.read(b))!=-1){
-	     o.write(b,0,n);
-	    }
+		for(ShareDate s : list){
+			if("category".equals(s.getType())){
+				
+				Category category = categoryService.get(s.getId());
+				List<Category> parentList = categoryService.getParentList(category.getSelf_id(),user.getId());
+				
+				categoryService.delete(category);
+				categoryService.delete(user.getId(), category);
+				
+				filesService.delete(category);
+				//删除磁盘下的物理文件夹
+				StringBuilder sb = new StringBuilder("D:/FileSys/upload/" + user.getUsername());
+				for(Category c : parentList){
+					sb.append("/"+c.getTitle());
+				}
+				File file = new File(sb.toString());
+				
+				FileUtil.deleteDir(file);
+				
+			}else if("file".equals(s.getType())){
+				
+				Files file = filesService.get(s.getId());
+				filesService.delete(file);
+				
+				File f = new File(file.getFilepath());
+				FileUtil.deleteDir(f);
+			}
+		}
 		
+		out.write("0");
 	}
 }

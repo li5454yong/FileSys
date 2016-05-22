@@ -69,4 +69,12 @@ public class CategoryServiceImpl implements CategoryService{
 		
 		return dao.get(id);
 	}
+	
+	public void delete(int userId,Category category){
+		dao.delete(userId, category);
+	}
+	
+	public void delete(Category category){
+		dao.delete(category);
+	}
 }

@@ -431,7 +431,7 @@ label {
 	background: #fff;
 	border: 1px solid #eaeaea;
 	width: 150px;
-	height: 130px;
+	height: 100px;
 	box-shadow: 0px 0px 10px 3px #989898;
 }
 
@@ -1068,7 +1068,68 @@ label {
 
 
 
+/*搜索页面css开始*/
 
+.search{
+	margin-top: 10px;
+}
+.search-list:first-of-type{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.search-list{
+	padding: 5px 10px;
+	color: #333;
+	border: 1px solid #EAEAEA;
+	border-bottom: none;
+	font-size: 16px;
+}
+.search-list:last-of-type{
+	border-bottom: 1px solid #EAEAEA;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.search-list:hover{
+	background: #F3F6FC;
+	cursor: pointer;
+}
+.search-list span{
+	display: inline-block;
+	margin-right: 45px;
+	color: #3281DE;
+	font-size: 14px;
+}
+.search-list p{
+	font-weight: bolder;
+}
+.search-button{
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+.search-text{
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #EAEAEA;
+	padding-left: 8px;
+	outline: none;
+	width:200px ;
+	
+}
+.search-but{
+	position: absolute;
+	width: 20px;
+	height: 23px;
+	border: none;
+	right: 8px;
+	top: 3px;
+	background: url(../img/search-button.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+
+/*搜索页面css结束*/
 
 
 

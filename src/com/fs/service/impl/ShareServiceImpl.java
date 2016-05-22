@@ -45,4 +45,16 @@ public class ShareServiceImpl implements ShareService {
 		return dao.getShareList(url);
 	}
 
+	@Override
+	public List<Share> getShareUrlList(int user_id) {
+		
+		return dao.getShareUrlList(user_id);
+	}
+
+	@Override
+	public List<Share> getShareList1(String url) {
+		// TODO Auto-generated method stub
+		return dao.getShareList1(url);
+	}
+
 }

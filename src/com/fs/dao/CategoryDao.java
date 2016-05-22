@@ -33,4 +33,8 @@ public interface CategoryDao{
 	
 	//根据id获取文件
 	public Category get(int id);
+	
+	public void delete(int userId,Category category);
+	
+	public void delete(Category category);
 }
